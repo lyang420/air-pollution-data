@@ -8,7 +8,7 @@ import csv
 import pandas as pd
 
 # `init()` reads the raw data on air pollution from the provided link, sorts
-# them into lists, and creates and returns a pandas dataframe from which we can
+# them into lists, and creates and returns a pandas DataFrame from which we can
 # generate plots similar to the one in the study.
 def init():
    data = []
@@ -35,7 +35,7 @@ def init():
 
    # Notice how we didn't make space for the first field, `num`. That's because
    # all `num` does is keep track of the index of each entry, which will
-   # automatically be done once we create the dataframe later.
+   # automatically be done once we create the DataFrame later.
    cua      = []
    city     = []
    geo_id   = []
