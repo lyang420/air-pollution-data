@@ -18,9 +18,6 @@ no2_black     = []
 no2_asian     = []
 no2_hispanic  = []
 
-pop_weight_mean_num = 0.0
-pop_weight_mean_den = 0.0
-
 for i in df.index:
    if df['Grade'][i] == 'A':
       no2_A += (df['Total'][i] * [df['NO2'][i]])
