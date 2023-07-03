@@ -18,6 +18,9 @@ no2_black     = []
 no2_asian     = []
 no2_hispanic  = []
 
+pop_weight_mean_num = 0.0
+pop_weight_mean_den = 0.0
+
 for i in df.index:
    if df['Grade'][i] == 'A':
       no2_A += (df['Total'][i] * [df['NO2'][i]])
@@ -28,7 +31,12 @@ for i in df.index:
    if df['Grade'][i] == 'D':
       no2_D += (df['Total'][i] * [df['NO2'][i]])
    if df['White'][i] > 0:
-      no2_white += ((df['White'][i] * df['NO2'][i]) / df['Total'][i])
-
-q1, q3 = np.percentile(no2_white, [25, 75])
-print(q1, q3)
+      no2_white += (df['White'][i] * [df['NO2'][i]])
+   if df['Other'][i] > 0:
+      no2_other += (df['Other'][i] * [df['NO2'][i]])
+   if df['Black'][i] > 0:
+      no2_black += (df['Black'][i] * [df['NO2'][i]])
+   if df['Asian'][i] > 0:
+      no2_asian += (df['Asian'][i] * [df['NO2'][i]])
+   if df['Hispanic'][i] > 0:
+      no2_hispanic += (df['Hispanic'][i] * [df['NO2'][i]])
