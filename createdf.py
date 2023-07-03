@@ -67,13 +67,19 @@ def init():
       pm25.append(entry['pm25'])
 
    # Quick explanation of what each field means, abbreviated from the link:
-   # * 'CUA'   = census urbanized area name
-   # * 'City'  = HOLC mapped city name
-   # * 'GEOID' = census block code
-   # * 'Grade' = HOLC map grade (A, B, C, or D)
-   # * 'PHOLC' = portion of census block pop. attributed to a given grade
-   # * number of 'asian', 'black', 'hispanic', 'white', 'other' residents
-   # * 'NO2' and 'PM25' concentrations
+   # 'CUA'      = Census Urbanized Area
+   # 'City'     = HOLC-mapped city name
+   # 'GEOID'    = Census block code
+   # 'Grade'    = HOLC map grade (A, B, C, or D)
+   # 'PHOLC'    = Portion of census block pop. attributed to a given grade
+   # 'Asian'    = Num. Asian residents
+   # 'Black'    = Num. Black residents
+   # 'Hispanic' = Num. Hispanic residents
+   # 'White'    = Num. White residents
+   # 'Other'    = Num. residents not classified as above ethnicities
+   # 'Total'    = Total num. residents
+   # 'NO2'      = NO2 concentration
+   # 'PM25'     = PM25 concentration
    df = pd.DataFrame({
       "CUA"      : cua,
       "City"     : city,
