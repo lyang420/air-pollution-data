@@ -18,8 +18,6 @@ Large File Storage (LSF) for alternative options.
 
 Questions, comments, and suggestions for code review welcome.
 
---
-
 ## Notes
 
 ### Wednesday, July 5, 2023
