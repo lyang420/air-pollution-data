@@ -49,13 +49,13 @@ labels = ['A', 'B', 'C', 'D', 'White', 'Other', 'Black', 'Asian', 'Hispanic']
 
 fig1, ax1 = plt.subplots(nrows = 1, ncols = 1)
 no2_plot = ax1.boxplot(data, labels = labels, patch_artist = True, showfliers = False, vert = True, whis = 0)
-ax1.set_title('NO2 (ppb) by HOLC')
+ax1.set_title('Unadjusted: national aggregation')
 
 ax1.set_ylim(0, 25)
 for median in no2_plot['medians']:
    median.set_color('black')
 
-colors = ['forestgreen', 'dodgerblue', 'yellow', 'orangered', 'mediumvioletred', 'darkkhaki', 'magenta', 'navy', 'darkgreen']
+colors = ['forestgreen', 'cornflowerblue', 'goldenrod', 'firebrick', 'palevioletred', 'darkkhaki', 'plum', 'slateblue', 'mediumseagreen']
 for patch, color in zip(no2_plot['boxes'], colors):
    patch.set_facecolor(color)
 
