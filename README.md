@@ -17,3 +17,13 @@ File size makes it too large for traditional upload or commit; see GitHub
 Large File Storage (LSF) for alternative options.
 
 Questions, comments, and suggestions for code review welcome.
+
+--
+
+## Notes
+
+### Wednesday, July 5, 2023
+
+Plot for population-weighted, nationally aggregated, unadjusted NO2 level
+distribution _slightly_ off when compared against ethnicity, HOLC numbers look
+correct.
