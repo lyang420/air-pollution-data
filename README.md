@@ -22,6 +22,8 @@ Questions, comments, and suggestions for code review welcome.
 
 ### Wednesday, July 5, 2023
 
-Plot for population-weighted, nationally aggregated, unadjusted NO2 level
-distribution _slightly_ off when compared against ethnicity, HOLC numbers look
-correct.
+When comparing air pollution levels against HOLC grade, numbers match up to
+those present in study.
+
+When comparing air pollution levels against race and ethnicity of residents,
+though, numbers differ slightly.
