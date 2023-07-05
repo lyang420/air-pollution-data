@@ -28,3 +28,7 @@ those present in study.
 When comparing air pollution levels against race and ethnicity of residents,
 numbers differ. Variances are mild in the NO2 plots, much more noticeable with
 PM25.
+
+In particular, intraurban differences broken down into both ethnicity and grade
+yield _significantly_ different results, this will need to be looked at
+further.
