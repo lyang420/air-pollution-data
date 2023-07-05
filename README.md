@@ -16,7 +16,7 @@ https://figshare.com/articles/dataset/Historical_redlining_is_associated_with_pr
 File size makes it too large for traditional upload or commit; see GitHub
 Large File Storage (LSF) for alternative options.
 
-Questions, comments, and suggestions for code review welcome.
+Questions, comments, and suggestions for code review welcome and encouraged.
 
 ## Notes
 
@@ -26,4 +26,5 @@ When comparing air pollution levels against HOLC grade, numbers match up to
 those present in study.
 
 When comparing air pollution levels against race and ethnicity of residents,
-though, numbers differ slightly.
+numbers differ. Variances are mild in the NO2 plots, much more noticeable with
+PM25.
