@@ -39,3 +39,6 @@ Fixed error from yesterday. Plots displayed in study are concentrated on
 pollution levels in HOLC-mapped areas; raw data contains numbers from blocks
 outside HOLC-mapped areas (denoted by 'N' grade). Omit these from plot
 generation. Fixes to follow.
+
+Need to factor in `PHOLC` into HOLC-grade numbers. Also lots and lots of
+comments, a lot of this looks unintelligible.
