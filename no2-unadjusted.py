@@ -23,13 +23,13 @@ no2_hispanic  = []
 # to plot distribution by race/ethnicity yields different numbers.
 for i in df.index:
    if df['Grade'][i] == 'A':
-      no2_A += (df['Total'][i] * [df['NO2'][i]])
+      no2_A += (round(df['Total'][i] * df['PHOLC'][i]) * [df['NO2'][i]])
    if df['Grade'][i] == 'B':
-      no2_B += (df['Total'][i] * [df['NO2'][i]])
+      no2_B += (round(df['Total'][i] * df['PHOLC'][i]) * [df['NO2'][i]])
    if df['Grade'][i] == 'C':
-      no2_C += (df['Total'][i] * [df['NO2'][i]])
+      no2_C += (round(df['Total'][i] * df['PHOLC'][i]) * [df['NO2'][i]])
    if df['Grade'][i] == 'D':
-      no2_D += (df['Total'][i] * [df['NO2'][i]])
+      no2_D += (round(df['Total'][i] * df['PHOLC'][i]) * [df['NO2'][i]])
    # See here: Population-weighted distribution of NO2 levels generated using
    # this approach yields numbers that differ from the figures displayed in the
    # study.

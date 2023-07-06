@@ -98,6 +98,7 @@ def init():
 
    # Format the entries of the dataframe that are numeric so we can make direct
    # comparisons when working with them to generate plots.
+   df['PHOLC']    = pd.to_numeric(df['PHOLC'])
    df['Asian']    = pd.to_numeric(df['Asian'])
    df['Black']    = pd.to_numeric(df['Black'])
    df['Hispanic'] = pd.to_numeric(df['Hispanic'])
