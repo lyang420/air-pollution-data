@@ -7,18 +7,11 @@ from createdf import init
 import matplotlib.pyplot as plt
 import numpy as np
 
-def calculate_pwm(pop, no2):
-   t = ((~np.isnan(pop)) & (~np.isnan(no2)))
-   pop = pop[t]
+def calculate_pwm(target, cities, no2, pop):
+   t = ((cities == target) & (~np.isnan(no2)) & (~np.isnan(pop)))
+   cities = cities[t]
    no2 = no2[t]
-   pwm = np.average(no2, weights = pop)
-   return pwm
-
-def calculate_pwm_grade(grade, target, pop, no2):
-   t = ((grade == target) & (~np.isnan(no2)) & (~np.isnan(pop)))
-   grade = grade[t]
    pop = pop[t]
-   no2 = no2[t]
    pwm = np.average(no2, weights = pop)
    return pwm
 
@@ -26,55 +19,78 @@ def calculate_pwm_grade(grade, target, pop, no2):
 
 df = init()
 
-pwm_hispanic_all = calculate_pwm(df['Hispanic'], df['NO2'])
-pwm_hispanic_A = calculate_pwm_grade(df['Grade'], 'A', df['Hispanic'], df['NO2'])
-pwm_hispanic_B = calculate_pwm_grade(df['Grade'], 'B', df['Hispanic'], df['NO2'])
-pwm_hispanic_C = calculate_pwm_grade(df['Grade'], 'C', df['Hispanic'], df['NO2'])
-pwm_hispanic_D = calculate_pwm_grade(df['Grade'], 'D', df['Hispanic'], df['NO2'])
-h1 = pwm_hispanic_A - pwm_hispanic_all
-h2 = pwm_hispanic_B - pwm_hispanic_all
-h3 = pwm_hispanic_C - pwm_hispanic_all
-h4 = pwm_hispanic_D - pwm_hispanic_all
+cities = list(set(df['City']))
+pwms = {}
+for city in cities:
+   pwms[city] = calculate_pwm(city, df['City'], df['NO2'], df['Total'])
 
-pwm_asian_all = calculate_pwm(df['Asian'], df['NO2'])
-pwm_asian_A = calculate_pwm_grade(df['Grade'], 'A', df['Asian'], df['NO2'])
-pwm_asian_B = calculate_pwm_grade(df['Grade'], 'B', df['Asian'], df['NO2'])
-pwm_asian_C = calculate_pwm_grade(df['Grade'], 'C', df['Asian'], df['NO2'])
-pwm_asian_D = calculate_pwm_grade(df['Grade'], 'D', df['Asian'], df['NO2'])
-a1 = pwm_asian_A - pwm_asian_all
-a2 = pwm_asian_B - pwm_asian_all
-a3 = pwm_asian_C - pwm_asian_all
-a4 = pwm_asian_D - pwm_asian_all
+no2_hispanic_A = []
+no2_hispanic_B = []
+no2_hispanic_C = []
+no2_hispanic_D = []
+no2_asian_A    = []
+no2_asian_B    = []
+no2_asian_C    = []
+no2_asian_D    = []
+no2_black_A    = []
+no2_black_B    = []
+no2_black_C    = []
+no2_black_D    = []
+no2_total_A    = []
+no2_total_B    = []
+no2_total_C    = []
+no2_total_D    = []
+no2_white_A    = []
+no2_white_B    = []
+no2_white_C    = []
+no2_white_D    = []
 
-pwm_black_all = calculate_pwm(df['Black'], df['NO2'])
-pwm_black_A = calculate_pwm_grade(df['Grade'], 'A', df['Black'], df['NO2'])
-pwm_black_B = calculate_pwm_grade(df['Grade'], 'B', df['Black'], df['NO2'])
-pwm_black_C = calculate_pwm_grade(df['Grade'], 'C', df['Black'], df['NO2'])
-pwm_black_D = calculate_pwm_grade(df['Grade'], 'D', df['Black'], df['NO2'])
-b1 = pwm_black_A - pwm_black_all
-b2 = pwm_black_B - pwm_black_all
-b3 = pwm_black_C - pwm_black_all
-b4 = pwm_black_D - pwm_black_all
+for i in df.index:
+   if df['Grade'][i] == 'A':
+      no2_hispanic_A += (df['Hispanic'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_asian_A += (df['Asian'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_black_A += (df['Black'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_total_A += (df['Total'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_white_A += (df['White'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+   if df['Grade'][i] == 'B':
+      no2_hispanic_B += (df['Hispanic'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_asian_B += (df['Asian'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_black_B += (df['Black'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_total_B += (df['Total'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_white_B += (df['White'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+   if df['Grade'][i] == 'C':
+      no2_hispanic_C += (df['Hispanic'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_asian_C += (df['Asian'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_black_C += (df['Black'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_total_C += (df['Total'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_white_C += (df['White'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+   if df['Grade'][i] == 'D':
+      no2_hispanic_D += (df['Hispanic'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_asian_D += (df['Asian'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_black_D += (df['Black'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_total_D += (df['Total'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
+      no2_white_D += (df['White'][i] * [(df['NO2'][i] - pwms[df['City'][i]])])
 
-pwm_total_all = calculate_pwm(df['Total'], df['NO2'])
-pwm_total_A = calculate_pwm_grade(df['Grade'], 'A', df['Total'], df['NO2'])
-pwm_total_B = calculate_pwm_grade(df['Grade'], 'B', df['Total'], df['NO2'])
-pwm_total_C = calculate_pwm_grade(df['Grade'], 'C', df['Total'], df['NO2'])
-pwm_total_D = calculate_pwm_grade(df['Grade'], 'D', df['Total'], df['NO2'])
-t1 = pwm_total_A - pwm_total_all
-t2 = pwm_total_B - pwm_total_all
-t3 = pwm_total_C - pwm_total_all
-t4 = pwm_total_D - pwm_total_all
-
-pwm_white_all = calculate_pwm(df['White'], df['NO2'])
-pwm_white_A = calculate_pwm_grade(df['Grade'], 'A', df['White'], df['NO2'])
-pwm_white_B = calculate_pwm_grade(df['Grade'], 'B', df['White'], df['NO2'])
-pwm_white_C = calculate_pwm_grade(df['Grade'], 'C', df['White'], df['NO2'])
-pwm_white_D = calculate_pwm_grade(df['Grade'], 'D', df['White'], df['NO2'])
-w1 = pwm_white_A - pwm_white_all
-w2 = pwm_white_B - pwm_white_all
-w3 = pwm_white_C - pwm_white_all
-w4 = pwm_white_D - pwm_white_all
+h1 = np.average(no2_hispanic_A)
+h2 = np.average(no2_hispanic_B)
+h3 = np.average(no2_hispanic_C)
+h4 = np.average(no2_hispanic_D)
+a1 = np.average(no2_asian_A)
+a2 = np.average(no2_asian_B)
+a3 = np.average(no2_asian_C)
+a4 = np.average(no2_asian_D)
+b1 = np.average(no2_black_A)
+b2 = np.average(no2_black_B)
+b3 = np.average(no2_black_C)
+b4 = np.average(no2_black_D)
+t1 = np.average(no2_total_A)
+t2 = np.average(no2_total_B)
+t3 = np.average(no2_total_C)
+t4 = np.average(no2_total_D)
+w1 = np.average(no2_white_A)
+w2 = np.average(no2_white_B)
+w3 = np.average(no2_white_C)
+w4 = np.average(no2_white_D)
 
 x_ax = ['A', 'B', 'C', 'D']
 
