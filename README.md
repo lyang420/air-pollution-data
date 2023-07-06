@@ -32,3 +32,10 @@ PM25.
 In particular, intraurban differences broken down into both ethnicity and grade
 yield _significantly_ different results, this will need to be looked at
 further.
+
+### Thursday, July 6, 2023
+
+Fixed error from yesterday. Plots displayed in study are concentrated on
+pollution levels in HOLC-mapped areas; raw data contains numbers from blocks
+outside HOLC-mapped areas (denoted by 'N' grade). Omit these from plot
+generation. Fixes to follow.
