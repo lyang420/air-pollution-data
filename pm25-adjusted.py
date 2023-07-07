@@ -35,19 +35,19 @@ pm25_hispanic  = []
 
 for i in df.index:
    if df['Grade'][i] == 'A':
-      pm25_A += (df['Total'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_A += (round(df['PHOLC'][i] * df['Total'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
    if df['Grade'][i] == 'B':
-      pm25_B += (df['Total'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_B += (round(df['PHOLC'][i] * df['Total'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
    if df['Grade'][i] == 'C':
-      pm25_C += (df['Total'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_C += (round(df['PHOLC'][i] * df['Total'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
    if df['Grade'][i] == 'D':
-      pm25_D += (df['Total'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_D += (round(df['PHOLC'][i] * df['Total'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
    if df['Grade'][i] != 'N':
-      pm25_white += (df['White'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
-      pm25_other += (df['Other'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
-      pm25_black += (df['Black'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
-      pm25_asian += (df['Asian'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
-      pm25_hispanic += (df['Hispanic'][i] * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_white += (round(df['PHOLC'][i] * df['White'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_other += (round(df['PHOLC'][i] * df['Other'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_black += (round(df['PHOLC'][i] * df['Black'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_asian += (round(df['PHOLC'][i] * df['Asian'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
+      pm25_hispanic += (round(df['PHOLC'][i] * df['Hispanic'][i]) * [(df['PM25'][i] - pwms[df['City'][i]])])
 
 data = [pm25_A, pm25_B, pm25_C, pm25_D, pm25_white, pm25_other, pm25_black, pm25_asian, pm25_hispanic]
 labels = ['A', 'B', 'C', 'D', 'White', 'Other', 'Black', 'Asian', 'Hispanic']
