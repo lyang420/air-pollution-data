@@ -28,11 +28,11 @@ for i in df.index:
    if df['Grade'][i] == 'D':
       no2_D += (round(df['Total'][i] * df['PHOLC'][i]) * [df['NO2'][i]])
    if df['Grade'][i] != 'N':
-      no2_white += (df['White'][i] * [df['NO2'][i]])
-      no2_other += (df['Other'][i] * [df['NO2'][i]])
-      no2_black += (df['Black'][i] * [df['NO2'][i]])
-      no2_asian += (df['Asian'][i] * [df['NO2'][i]])
-      no2_hispanic += (df['Hispanic'][i] * [df['NO2'][i]])
+      no2_white += (round(df['PHOLC'][i] * df['White'][i]) * [df['NO2'][i]])
+      no2_other += (round(df['PHOLC'][i] * df['Other'][i]) * [df['NO2'][i]])
+      no2_black += (round(df['PHOLC'][i] * df['Black'][i]) * [df['NO2'][i]])
+      no2_asian += (round(df['PHOLC'][i] * df['Asian'][i]) * [df['NO2'][i]])
+      no2_hispanic += (round(df['PHOLC'][i] * df['Hispanic'][i]) * [df['NO2'][i]])
 
 data = [no2_A, no2_B, no2_C, no2_D, no2_white, no2_other, no2_black, no2_asian, no2_hispanic]
 labels = ['A', 'B', 'C', 'D', 'White', 'Other', 'Black', 'Asian', 'Hispanic']
