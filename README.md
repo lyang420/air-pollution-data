@@ -53,3 +53,6 @@ It is eating a huge bit of memory to run each script, maybe there are more
 efficient ways of going about this, e.g., creating a new column in the
 DataFrame so we only need to make the calculation once, right after creating
 it. We'll see.
+
+Need to make some of the plots prettier too (e.g., add titles, legends, modify
+axes scales and sizes of bars)
