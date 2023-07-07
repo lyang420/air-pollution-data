@@ -42,3 +42,14 @@ generation. Fixes to follow.
 
 Need to factor in `PHOLC` into HOLC-grade numbers. Also lots and lots of
 comments, a lot of this looks unintelligible.
+
+### Friday, July 7, 2023
+
+Factoring `PHOLC` into the population number calculations, differences are
+marginal but present; I think it's relevant, the supporting information
+mentioned it.
+
+It is eating a huge bit of memory to run each script, maybe there are more
+efficient ways of going about this, e.g., creating a new column in the
+DataFrame so we only need to make the calculation once, right after creating
+it. We'll see.
