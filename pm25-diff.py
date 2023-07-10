@@ -8,7 +8,11 @@ import numpy as np
 
 # `calculate_pwm` calculates the population-weighted mean (PWM) PM2.5
 # concentration for the city `target`, per Eq. 1 from the supporting
-# information.
+# information. As I am copying and pasting this function into yet another
+# script, I am starting to wonder if this, too, can be abstracted into another
+# file, much like the DataFrame initialization function, and just how much of
+# the repetitive processes I've written can be abstracted into a few separate
+# files.
 def calculate_pwm(target, cities, pm25, pop):
    # Given a city to calculate the PWM for, and lists of all cities, their
    # PM2.5 levels, and populations, filter them such that we only process the
