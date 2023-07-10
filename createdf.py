@@ -72,14 +72,14 @@ def init():
    # 'GEOID'    = Census block code
    # 'Grade'    = HOLC map grade (A, B, C, or D)
    # 'PHOLC'    = Portion of census block pop. attributed to a given grade
-   # 'Asian'    = Num. Asian residents
-   # 'Black'    = Num. Black residents
-   # 'Hispanic' = Num. Hispanic residents
-   # 'White'    = Num. White residents
-   # 'Other'    = Num. residents not classified as above ethnicities
-   # 'Total'    = Total num. residents
-   # 'NO2'      = NO2 concentration
-   # 'PM25'     = PM2.5 concentration
+   # 'Asian'    = Num. Asian residents in a block
+   # 'Black'    = Num. Black residents in a block
+   # 'Hispanic' = Num. Hispanic residents in a block
+   # 'White'    = Num. White residents in a block
+   # 'Other'    = Num. residents not identifying as any of the above
+   # 'Total'    = Total num. residents in a block
+   # 'NO2'      = NO2 concentration in ppb
+   # 'PM25'     = PM2.5 concentration in micrograms per cubic meter
    df = pd.DataFrame({
       "CUA"      : cua,
       "City"     : city,
