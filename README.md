@@ -55,8 +55,9 @@ results from there may be integrated into an online dashboard.
 Questions, comments, and suggestions are welcome and encouraged.
 
 - [x] Write further comments in the `.py` files, some of them are hard to read.
-- [ ] Can some of the code used to generate plots be made more efficient?
-- [ ] Additional plots are present in the study's supporting information file,
+- [-] A great deal of the code here is repetitive, and can probably be
+      abstracted into separate files for greater efficiency/readability.
+- [-] Additional plots are present in the study's supporting information file,
       add code to generate those.
-- [ ] Locate datasets containing local data (EIDC).
-- [ ] Customize appearance and dimensions of plots from default.
+- [-] Locate datasets containing local data (EIDC).
+- [ ] Customize appearance, font size, and dimensions of plots from default.
