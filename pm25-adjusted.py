@@ -1,7 +1,7 @@
 # `pm25-adjusted.py` creates a plot displaying the adjusted national
 # population-weighted distribution of intraurban differences in PM2.5 levels
 # within HOLC-mapped areas at the census block level as specified in Figure
-# 1(b).
+# 1(d).
 from createdf import init
 import matplotlib.pyplot as plt
 import numpy as np

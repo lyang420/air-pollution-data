@@ -1,7 +1,7 @@
 # `no2-diff.py` creates a plot displaying the adjusted national
 # population-weighted distribution of intraurban differences in PM2.5 levels
 # within HOLC-mapped areas at the census block level as specified in Figure
-# 2(d).
+# 2(b).
 from createdf import init
 import matplotlib.pyplot as plt
 import numpy as np
