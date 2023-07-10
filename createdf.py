@@ -79,7 +79,7 @@ def init():
    # 'Other'    = Num. residents not classified as above ethnicities
    # 'Total'    = Total num. residents
    # 'NO2'      = NO2 concentration
-   # 'PM25'     = PM25 concentration
+   # 'PM25'     = PM2.5 concentration
    df = pd.DataFrame({
       "CUA"      : cua,
       "City"     : city,
