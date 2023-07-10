@@ -54,7 +54,7 @@ results from there may be integrated into an online dashboard.
 
 Questions, comments, and suggestions are welcome and encouraged.
 
-- [ ] Write further comments in the `.py` files, some of them are hard to read.
+- [x] Write further comments in the `.py` files, some of them are hard to read.
 - [ ] Can some of the code used to generate plots be made more efficient?
 - [ ] Additional plots are present in the study's supporting information file,
       add code to generate those.
