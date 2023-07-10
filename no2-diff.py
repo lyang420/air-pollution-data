@@ -10,6 +10,9 @@ import numpy as np
 # concentration for the city `target`, per Eq. 1 from the supporting
 # information.
 def calculate_pwm(target, cities, no2, pop):
+   # Given a city to calculate the PWM for, and lists of all cities, their NO2
+   # levels, and populations, filter them such that we only process the city
+   # of interest, and NO2/population statistics that are actual numbers.
    t = ((cities == target) & (~np.isnan(no2)) & (~np.isnan(pop)))
    cities = cities[t]
    no2 = no2[t]
