@@ -2,6 +2,8 @@
 
 ## Overview
 
+### Introduction
+
 The code in this repository aims to recreate plots displayed in a study from
 2022 that shows an association between historical redlining and present-day
 air pollution disparities in U.S. cities. The link to the publication (Lane,
