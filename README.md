@@ -4,7 +4,7 @@
 
 The code in this repository aims to recreate plots displayed in a study from
 2022 that shows an association between historical redlining and present-day
-air pollution disparities in U.S. cities. The link to the publicationo (Lane,
+air pollution disparities in U.S. cities. The link to the publication (Lane,
 Morello-Frosch, Marshall, & Apte, 2022) can be found here:
 
 https://pubs.acs.org/doi/10.1021/acs.estlett.1c01012?fig=tgr1&ref=pdf
