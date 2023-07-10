@@ -1,12 +1,14 @@
-# This script aims to create a plot displaying the adjusted national
-# population-weighted distributions of intraurban differences in NO2 levels
-# within HOLC-mapped areas at the census block level in line format as seen in
-# Figure 2(a).
+# `no2-diff.py` creates a plot displaying the adjusted national
+# population-weighted distribution of intraurban differences in NO2 levels
+# within HOLC-mapped areas at the census block level as specified in Figure
+# 2(a).
 from createdf import init
-
 import matplotlib.pyplot as plt
 import numpy as np
 
+# `calculate_pwm` calculates the population-weighted mean (PWM) NO2
+# concentration for the city `target`, per Eq. 1 from the supporting
+# information.
 def calculate_pwm(target, cities, no2, pop):
    t = ((cities == target) & (~np.isnan(no2)) & (~np.isnan(pop)))
    cities = cities[t]
@@ -15,15 +17,22 @@ def calculate_pwm(target, cities, no2, pop):
    pwm = np.average(no2, weights = pop)
    return pwm
 
-# -----------------------------------------------------------------------------
-
+# Initialize DataFrame from imported function.
 df = init()
 
+# `cities` is a list of all unique cities from the raw data.
 cities = list(set(df['City']))
+
+# `pwms` is a dictionary that stores all cities from the raw data and their
+# respective PWM NO2 levels.
 pwms = {}
 for city in cities:
    pwms[city] = calculate_pwm(city, df['City'], df['NO2'], df['Total'])
 
+# This plot utilizes the same data as that from `no2-adjusted.py`, except that
+# instead of a box-and-whisker plot, it generates a line chart. Thus,
+# lines are generated for each listed ethnicity in the study, with each line
+# having four points, one for each HOLC grade.
 no2_hispanic_A = []
 no2_hispanic_B = []
 no2_hispanic_C = []
@@ -45,6 +54,13 @@ no2_white_B    = []
 no2_white_C    = []
 no2_white_D    = []
 
+# Iterate through DataFrame and add appropriate numbers to corresponding lists.
+# Notice that the population figure is always multiplied by the `PHOLC` of each
+# entry, as that denotes the proportion of the number of people living in the
+# marked HOLC grade.
+#
+# Notice also we are subtracting the PWM of each entry's city from the NO2
+# level, in accordance with the study.
 for i in df.index:
    if df['Grade'][i] == 'A':
       no2_hispanic_A += (round(df['PHOLC'][i] * df['Hispanic'][i]) * [(df['NO2'][i] - pwms[df['City'][i]])])
@@ -71,6 +87,8 @@ for i in df.index:
       no2_total_D += (round(df['PHOLC'][i] * df['Total'][i]) * [(df['NO2'][i] - pwms[df['City'][i]])])
       no2_white_D += (round(df['PHOLC'][i] * df['White'][i]) * [(df['NO2'][i] - pwms[df['City'][i]])])
 
+# The plot's points are the population-weighted means of the intraurban
+# differences, which we collected above.
 h1 = np.average(no2_hispanic_A)
 h2 = np.average(no2_hispanic_B)
 h3 = np.average(no2_hispanic_C)
