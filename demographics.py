@@ -59,6 +59,8 @@ for i in df.index:
       asian_HOLC[3] += df['PHOLC'][i] * df['Asian'][i]
       hispanic_HOLC[3] += df['PHOLC'][i] * df['Hispanic'][i]
 
+# Is there a less bulky way of preparing these numbers?
+
 # Divide all numbers by a million so the resulting plot image file won't get
 # crowded with the software trying to list every raw number as is.
 white_HOLC_adjusted = [x / divisor for x in white_HOLC]
