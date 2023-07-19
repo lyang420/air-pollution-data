@@ -50,7 +50,7 @@ better, please fork the repo and create a pull request.
 ### Roadmap
 
 July 3, 2023
----
+
 - Initialized GitHub repo
 - Added description and credits
 - Added code to initialize DataFrame
@@ -59,44 +59,44 @@ July 3, 2023
 - Generated plots moved to own folders
 
 July 5, 2023
----
+
 - Added code to generate intraurban difference plots from Figure 2
 - Slight but noticeable differences in distribution of air pollution levels
   with ethnicity
 
 July 6, 2023
----
+
 - Fixed discrepancy in plots from Figures 1 and 2; these plots are only
   means to display air pollution levels in HOLC-mapped areas
 
 July 7, 2023
----
+
 - Factored PHOLC into plots from Figures 1 and 2
 - Inefficient code may cause memory problems, programs to crash
 
 July 10, 2023
----
+
 - Added code to generate demographic numbers from Figure S3
 - Added comments to code for Figures 1, 2, and 3
 - Edited README to include todo
 - Added code to generate modified version of plot from Figure S4
 
 July 12, 2023
----
+
 - Added code to generate six additional plots from Figure S5
 - Made note of major number discrepancy in city size from Figure S5
 
 July 19, 2023
----
+
 - Reformatted README, todo
 
 ### To Do
 
-[ ] Abstract repetitive functions from code into utility file
-[ ] Rename scripts and generated plot images
-[ ] Finish writing comments in code
-[ ] Adjust additional plot visual details (legend, dimensions, colors)
-[ ] Include Jupyter Notebook writeups in folders
+- [ ] Abstract repetitive functions from code into utility file
+- [ ] Rename scripts and generated plot images
+- [ ] Finish writing comments in code
+- [ ] Adjust additional plot visual details (legend, dimensions, colors)
+- [ ] Include Jupyter Notebook writeups in folders
 
 ## Credits
 
