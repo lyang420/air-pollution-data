@@ -1,63 +1,113 @@
-# air-pollution-data
+# Air Pollution Data Analysis
 
-## Overview
+## About
 
-### Introduction
-
-The code in this repository aims to recreate plots displayed in a study from
-2022 that shows an association between historical redlining and present-day
-air pollution disparities in U.S. cities. The link to the publication (Lane,
-Morello-Frosch, Marshall, & Apte, 2022) can be found here:
+The code in this repository aims to recreate plots displayed in a publication
+that shows correlation between historical redlining across major cities in the
+United States and present-day air pollution levels. The link to this study
+(Lane, Morello-Frosch, Marshall, & Apte, 2022) can be found here:
 
 https://pubs.acs.org/doi/10.1021/acs.estlett.1c01012?fig=tgr1&ref=pdf
 
-`createdf.py` generates and formats a pandas DataFrame to be used to create
-plots.
+Once the code is ascertained to be able to accurately analyze data, the goal is
+to apply it to data regarding building projects in a smaller area in Baltimore
+City, as part of a project by Morgan State University and Georgetown
+University.
 
-`no2-unadjusted.py`, `no2-adjusted.py`, `pm25-unadjusted.py`, and
-`pm25-adjusted.py` generates plots that display the following, respectively:
+## Table of Contents
 
-* Unadjusted NO2 levels by HOLC grade and Race/Ethnicity
-* Adjusted NO2 levels (intraurban differences) by HOLC grade and Race/Ethnicity
-* Unadjusted PM2.5 levels by HOLC grade and Race/Ethnicity
-* Adjusted PM2.5 levels (intraurban differences) by HOLC grade and
-  Race/Ethnicity
+- [Usage](#usage)
+- [Changelog](#changelog)
+- [Credits](#credits)
 
-They correspond to Figure 1 in the study.
+## Usage
 
-`no2-diff.py` and `pm25-diff.py` generates plots that display intraurban
-differences between residents by both race/ethnicity and HOLC grade, as per
-Figure 2.
+### Execution
 
-`demographics.py` generates plots that display the distribution of the
-population by HOLC grade, as well as their respective demographics, as seen in
-Figure S3 from the study's supporting information.
+The code files are stored in the main part of the repository. In order for it
+to run correctly, be sure to have the raw data file in the same folder. The
+raw data can be found here:
 
-### Sources
+https://figshare.com/articles/dataset/Historical_redlining_is_associated_with_present-day_air_pollution_disparities_in_U_S_cities_Associated_datasets/19193243?file=34300682
 
-The raw data used to generate the plots can be found here:
+Execute the code as you normally would in the terminal by entering
+`python [file-name]`, where `file-name` is the name of the script you want to
+run. Depending on your machine, runtime may be a few minutes.
 
-https://figshare.com/articles/dataset/Historical_redlining_is_associated_with_present-day_air_pollution_disparities_in_U_S_cities_Associated_datasets/19193243?file=34300682.
+### Repo Organization
 
-It is too large for me to upload it to GitHub, either manually or via a commit.
-I may look into Large File Storage (LSF); users may also download the `.csv`
-file directly from the link above.
+The folders store each of the respective generated plots from the study. Each
+folder (will) also contain a Jupyter Notebook write-up providing more
+comprehensive overview of the code used to generate its graphs.
 
-### Goal
+### Contributing
 
-Once the code is able to accurately generate plots from the study, it can be
-used to process data from other sources, specifically, local data from the
-Baltimore area (see Baltimore Buildings Data energy efficiency project). The
-results from there may be integrated into an online dashboard.
+Suggestions are welcome and encouraged. If you have an idea to make this
+better, please fork the repo and create a pull request.
 
-## To Do
+## Changelog
 
-Questions, comments, and suggestions are welcome and encouraged.
+### Roadmap
 
-- [x] Write further comments in the `.py` files, some of them are hard to read.
-- [ ] A great deal of the code here is repetitive, and can probably be
-      abstracted into separate files for greater efficiency/readability.
-- [ ] Additional plots are present in the study's supporting information file,
-      add code to generate those.
-- [ ] Locate datasets containing local data (EIDC).
-- [ ] Customize appearance, font size, and dimensions of plots from default.
+July 3, 2023
+---
+- Initialized GitHub repo
+- Added description and credits
+- Added code to initialize DataFrame
+- Large files cannot be uploaded to GitHub without Large File Storage (LSF)
+- Added code to generate unadjusted and adjusted plots from Figure 1
+- Generated plots moved to own folders
+
+July 5, 2023
+---
+- Added code to generate intraurban difference plots from Figure 2
+- Slight but noticeable differences in distribution of air pollution levels
+  with ethnicity
+
+July 6, 2023
+---
+- Fixed discrepancy in plots from Figures 1 and 2; these plots are only
+  means to display air pollution levels in HOLC-mapped areas
+
+July 7, 2023
+---
+- Factored PHOLC into plots from Figures 1 and 2
+- Inefficient code may cause memory problems, programs to crash
+
+July 10, 2023
+---
+- Added code to generate demographic numbers from Figure S3
+- Added comments to code for Figures 1, 2, and 3
+- Edited README to include todo
+- Added code to generate modified version of plot from Figure S4
+
+July 12, 2023
+---
+- Added code to generate six additional plots from Figure S5
+- Made note of major number discrepancy in city size from Figure S5
+
+July 19, 2023
+---
+- Reformatted README, todo
+
+### To Do
+
+[ ] Abstract repetitive functions from code into utility file
+[ ] Rename scripts and generated plot images
+[ ] Finish writing comments in code
+[ ] Adjust additional plot visual details (legend, dimensions, colors)
+[ ] Include Jupyter Notebook writeups in folders
+
+## Credits
+
+Code written in Python.
+
+Study by Haley M. Lane, Rachel Morello-Frosch, Julian D. Marshall, and Joshua
+S. Apte (https://pubs.acs.org/doi/10.1021/acs.estlett.1c01012?fig=tgr1&ref=pdf)
+.
+
+Morgan State University Faculty: Paul S. Wang
+(https://www.morgan.edu/computer-science/faculty-and-staff/shuangbao-wang)
+
+Contact me at
+[lyang420@umd.edu](mailto:lyang420@umd.edu?subject=[GitHub]%20Air20%Pollution%20Data)
