@@ -132,3 +132,30 @@ def collect_data(df, target, calc_diff):
          hispanic += (round(df['PHOLC'][i] * df['Hispanic'][i]) * [(df[target][i]) - eval(diff)])
    
    return [HOLC_A_data, HOLC_B_data, HOLC_C_data, HOLC_D_data, white, other, black, asian, hispanic]
+
+# `calc_pwm_diff()` parses the DataFrame and returns a list of the differences
+# between population-weighted air pollution levels by both HOLC grade _and_
+# ethnicity. This computation, used starting in Figure 2, differed sufficiently
+# from Figure 1 that it had to be included as its own separate function.
+def calc_pwm_diff(df, ethnicity, target):
+   spec_A_data = []
+   spec_B_data = []
+   spec_C_data = []
+   spec_D_data = []
+
+   cities = list(set(df['City']))
+   pwms = {}
+   for city in cities:
+      pwms[city] = calc_city_pwm(city, df['City'], df[target], df['Total'])
+   
+   for i in df.index:
+      if df['Grade'][i] == 'A':
+         spec_A_data += (round(df['PHOLC'][i] * df[ethnicity][i]) * [(df[target][i] - pwms[df['City'][i]])])
+      if df['Grade'][i] == 'B':
+         spec_B_data += (round(df['PHOLC'][i] * df[ethnicity][i]) * [(df[target][i] - pwms[df['City'][i]])])
+      if df['Grade'][i] == 'C':
+         spec_C_data += (round(df['PHOLC'][i] * df[ethnicity][i]) * [(df[target][i] - pwms[df['City'][i]])])
+      if df['Grade'][i] == 'D':
+         spec_D_data += (round(df['PHOLC'][i] * df[ethnicity][i]) * [(df[target][i] - pwms[df['City'][i]])])
+   
+   return [np.average(spec_A_data), np.average(spec_B_data), np.average(spec_C_data), np.average(spec_D_data)]
