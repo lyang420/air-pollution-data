@@ -117,13 +117,13 @@ def collect_data(df, target, calc_diff):
 
    for i in df.index:
       if df['Grade'][i] == 'A':
-         HOLC_A_data += (round(df['Total'][i] * df['PHOLC'][i]) * [(df[target][i]) - eval(diff)])
+         HOLC_A_data += (round(df['PHOLC'][i] * df['Total'][i]) * [(df[target][i]) - eval(diff)])
       if df['Grade'][i] == 'B':
-         HOLC_B_data += (round(df['Total'][i] * df['PHOLC'][i]) * [(df[target][i]) - eval(diff)])
+         HOLC_B_data += (round(df['PHOLC'][i] * df['Total'][i]) * [(df[target][i]) - eval(diff)])
       if df['Grade'][i] == 'C':
-         HOLC_C_data += (round(df['Total'][i] * df['PHOLC'][i]) * [(df[target][i]) - eval(diff)])
+         HOLC_C_data += (round(df['PHOLC'][i] * df['Total'][i]) * [(df[target][i]) - eval(diff)])
       if df['Grade'][i] == 'D':
-         HOLC_D_data += (round(df['Total'][i] * df['PHOLC'][i]) * [(df[target][i]) - eval(diff)])
+         HOLC_D_data += (round(df['PHOLC'][i] * df['Total'][i]) * [(df[target][i]) - eval(diff)])
       if df['Grade'][i] != 'N':
          white += (round(df['PHOLC'][i] * df['White'][i]) * [(df[target][i]) - eval(diff)])
          other += (round(df['PHOLC'][i] * df['Other'][i]) * [(df[target][i]) - eval(diff)])
