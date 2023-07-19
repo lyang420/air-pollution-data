@@ -4,7 +4,7 @@
 # The first displays the total number of residents living in blocks of 'A,'
 # 'B,' 'C,' or 'D,' HOLC grade. The second displays the demographics of blocks
 # of each grade.
-from createdf import init
+from utils import init
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd

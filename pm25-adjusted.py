@@ -2,7 +2,7 @@
 # population-weighted distribution of intraurban differences in PM2.5 levels
 # within HOLC-mapped areas at the census block level as specified in Figure
 # 1(d).
-from createdf import init
+from utils import init
 import matplotlib.pyplot as plt
 import numpy as np
 

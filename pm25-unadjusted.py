@@ -1,7 +1,7 @@
 # `pm25-unadjusted.py` creates a plot displaying the unadjusted national
 # population-weighted distribution of PM2.5 levels within HOLC-mapped areas at
 # the census block level as specified in Figure 1(b).
-from createdf import init
+from utils import init
 import matplotlib.pyplot as plt
 import numpy as np
 

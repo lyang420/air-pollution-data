@@ -1,7 +1,7 @@
 # `no2-unadjusted.py` creates a plot displaying the unadjusted national
 # population-weighted distribution of NO2 levels within HOLC-mapped areas at
 # the census block level as specified in Figure 1(a).
-from createdf import init
+from utils import init
 import matplotlib.pyplot as plt
 import numpy as np
 

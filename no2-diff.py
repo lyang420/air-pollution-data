@@ -2,7 +2,7 @@
 # population-weighted distribution of intraurban differences in NO2 levels
 # within HOLC-mapped areas at the census block level as specified in Figure
 # 2(a).
-from createdf import init
+from utils import init
 import matplotlib.pyplot as plt
 import numpy as np
 
