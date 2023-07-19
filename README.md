@@ -70,7 +70,7 @@ July 5, 2023
 July 6, 2023
 
 - Fixed discrepancy in plots from Figures 1 and 2; these plots are only
-  means to display air pollution levels in HOLC-mapped areas
+  meant to display air pollution levels in HOLC-mapped areas
 
 July 7, 2023
 
