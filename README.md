@@ -33,9 +33,9 @@ comprehensive overview of the code used to generate its graphs.
 
 ### Execution
 
-The code files are stored in the main part of the repository. In order for it
-to run correctly, be sure to have the raw data file in the same folder. The
-raw data can be found here:
+The code files are stored in the main part of the repository. In order for them
+to run correctly, be sure to have the `utils.py` and the raw data file in the
+same folder. The raw data can be found here:
 
 https://figshare.com/articles/dataset/Historical_redlining_is_associated_with_present-day_air_pollution_disparities_in_U_S_cities_Associated_datasets/19193243?file=34300682
 
