@@ -5,6 +5,7 @@
 # Necessary imports
 import csv
 import pandas as pd
+import numpy as np
 
 # `init()` creates and returns a pandas DataFrame from the specific .csv file
 # used in the 2022 study on air pollution.
@@ -84,3 +85,50 @@ def init():
    df['PM25']     = pd.to_numeric(df['PM25'])
 
    return df
+
+# `calc_city_pwm()` returns a dictionary of all unique cities and their
+# population-weighted mean level of air pollution measurement of interest.
+def calc_city_pwm(target_city, all_cities, datapoint, pop):
+   condition = ((all_cities == target_city) & (~np.isnan(datapoint)) & (~np.isnan(pop)))
+   datapoint = datapoint[condition]
+   pop = pop[condition]
+   return np.average(datapoint, weights = pop)
+
+# `collect_data()` parses the DataFrame and returns a list of lists containing
+# air pollution levels by HOLC grade and race/ethnicity.
+def collect_data(df, target, calc_diff):
+   HOLC_A_data = []
+   HOLC_B_data = []
+   HOLC_C_data = []
+   HOLC_D_data = []
+   white       = []
+   other       = []
+   black       = []
+   asian       = []
+   hispanic    = []
+
+   diff = "0"
+   if calc_diff:
+      cities = list(set(df['City']))
+      pwms = {}
+      for city in cities:
+         pwms[city] = calc_city_pwm(city, df['City'], df[target], df['Total'])
+      diff = "pwms[df['City'][i]]"
+
+   for i in df.index:
+      if df['Grade'][i] == 'A':
+         HOLC_A_data += (round(df['Total'][i] * df['PHOLC'][i]) * [(df[target][i]) - eval(diff)])
+      if df['Grade'][i] == 'B':
+         HOLC_B_data += (round(df['Total'][i] * df['PHOLC'][i]) * [(df[target][i]) - eval(diff)])
+      if df['Grade'][i] == 'C':
+         HOLC_C_data += (round(df['Total'][i] * df['PHOLC'][i]) * [(df[target][i]) - eval(diff)])
+      if df['Grade'][i] == 'D':
+         HOLC_D_data += (round(df['Total'][i] * df['PHOLC'][i]) * [(df[target][i]) - eval(diff)])
+      if df['Grade'][i] != 'N':
+         white += (round(df['PHOLC'][i] * df['White'][i]) * [(df[target][i]) - eval(diff)])
+         other += (round(df['PHOLC'][i] * df['Other'][i]) * [(df[target][i]) - eval(diff)])
+         black += (round(df['PHOLC'][i] * df['Black'][i]) * [(df[target][i]) - eval(diff)])
+         asian += (round(df['PHOLC'][i] * df['Asian'][i]) * [(df[target][i]) - eval(diff)])
+         hispanic += (round(df['PHOLC'][i] * df['Hispanic'][i]) * [(df[target][i]) - eval(diff)])
+   
+   return [HOLC_A_data, HOLC_B_data, HOLC_C_data, HOLC_D_data, white, other, black, asian, hispanic]
