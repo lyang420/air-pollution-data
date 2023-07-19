@@ -44,3 +44,4 @@
 - Abstracted Figure 1 script functions into utils, could go a step further
   and combine all four into one script, but that would take something like ten
   minutes to run to completion
+- Abstracted Figure 2 script functions into utils
