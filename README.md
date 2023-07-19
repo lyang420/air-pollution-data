@@ -16,11 +16,20 @@ University.
 
 ## Table of Contents
 
-- [Usage](#usage)
-- [Changelog](#changelog)
+- [How to Read this Repo](#repo-organization)
+- [How to Run the Code](#execution)
+- [How to Contribute](#contributing)
+- [Changelog](#roadmap)
+- [To Dos](#to-do)
 - [Credits](#credits)
 
 ## Usage
+
+### Repo Organization
+
+The folders store each of the respective generated plots from the study. Each
+folder (will) also contain a Jupyter Notebook write-up providing more
+comprehensive overview of the code used to generate its graphs.
 
 ### Execution
 
@@ -33,12 +42,6 @@ https://figshare.com/articles/dataset/Historical_redlining_is_associated_with_pr
 Execute the code as you normally would in the terminal by entering
 `python [file-name]`, where `file-name` is the name of the script you want to
 run. Depending on your machine, runtime may be a few minutes.
-
-### Repo Organization
-
-The folders store each of the respective generated plots from the study. Each
-folder (will) also contain a Jupyter Notebook write-up providing more
-comprehensive overview of the code used to generate its graphs.
 
 ### Contributing
 
