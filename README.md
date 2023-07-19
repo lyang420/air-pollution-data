@@ -104,7 +104,6 @@ Code written in Python.
 
 Study by Haley M. Lane, Rachel Morello-Frosch, Julian D. Marshall, and Joshua
 S. Apte (https://pubs.acs.org/doi/10.1021/acs.estlett.1c01012?fig=tgr1&ref=pdf)
-.
 
 Morgan State University Faculty: Paul S. Wang
 (https://www.morgan.edu/computer-science/faculty-and-staff/shuangbao-wang)
