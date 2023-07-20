@@ -41,11 +41,11 @@
 ### July 19, 2023
 
 - Reformatted README, todo
-- Abstracted Figure 1 script functions into `utils`, could go a step further
+- Abstracted Figure 1 script functions into `utils.py`, could go a step further
   and combine all four into one script, but that would take something like ten
   minutes to run to completion
-- Abstracted Figure 2 script functions into `utils`
+- Abstracted Figure 2 script functions into `utils.py`
 
 ### July 20, 2023
 
-- Abstracted Figure S3 script functions into `utils`
+- Abstracted Figure S3 script functions into `utils.py`
