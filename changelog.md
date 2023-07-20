@@ -49,3 +49,4 @@
 ### July 20, 2023
 
 - Abstracted Figure S3 script functions into `utils.py`
+- Abstracted Figure S4 script functions into `utils.py`
