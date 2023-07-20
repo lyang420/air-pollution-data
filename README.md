@@ -73,4 +73,4 @@ Morgan State University Faculty: Paul S. Wang
 (https://www.morgan.edu/computer-science/faculty-and-staff/shuangbao-wang)
 
 Contact me at
-[lyang420@umd.edu](mailto:lyang420@umd.edu?subject=[GitHub]%20Air20%Pollution%20Data)
+[lyang420@umd.edu](mailto:lyang420@umd.edu?subject=[GitHub]%20Air20%Pollution%20Data).
