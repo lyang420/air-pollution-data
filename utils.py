@@ -186,3 +186,28 @@ def collect_pop(df, pop):
    
    res = [x / 1000000.0 for x in res]
    return res
+
+def collect_percentile(df, target):
+   perc_A = []
+   perc_B = []
+   perc_C = []
+   perc_D = []
+   cumulative = []
+   percentiles = range(0, 100)
+
+   for i in df.index:
+      cumulative += (round(df['PHOLC'][i] * df['Total'][i]) * [df[target][i]])
+      if df['Grade'][i] == 'A':
+         perc_A += (round(df['PHOLC'][i] * df['Total'][i]) * [df[target][i]])
+      if df['Grade'][i] == 'B':
+         perc_B += (round(df['PHOLC'][i] * df['Total'][i]) * [df[target][i]])
+      if df['Grade'][i] == 'C':
+         perc_C += (round(df['PHOLC'][i] * df['Total'][i]) * [df[target][i]])
+      if df['Grade'][i] == 'D':
+         perc_D += (round(df['PHOLC'][i] * df['Total'][i]) * [df[target][i]])
+   
+   return (np.percentile(perc_A, percentiles),
+           np.percentile(perc_B, percentiles),
+           np.percentile(perc_C, percentiles),
+           np.percentile(perc_D, percentiles),
+           np.percentile(cumulative, percentiles))
