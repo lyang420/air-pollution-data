@@ -63,7 +63,7 @@ See `changelog.md`.
       Jupyter Notebook format
 - [ ] Extrapolate code and analysis to regional (DMV area) and local statistics
       (Baltimore City)
-= [ ] Add `docs` folder to store Web links to study
+- [ ] Add `docs` folder to store Web links to study
 
 ## Credits
 
