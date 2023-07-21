@@ -86,6 +86,12 @@ def init():
 
    return df
 
+def count_city_pop(target_city, all_cities, grade, PHOLC, population):
+   condition = ((all_cities == target_city) & (~np.equal(grade, 'N')))
+   PHOLC = PHOLC[condition]
+   population = population[condition]
+   return sum(round(PHOLC * population))
+
 # `calc_city_pwm()` returns a dictionary of all unique cities and their
 # population-weighted mean level of air pollution measurement of interest.
 def calc_city_pwm(target_city, all_cities, datapoint, pop):
@@ -211,3 +217,86 @@ def collect_percentile(df, target):
            np.percentile(perc_C, percentiles),
            np.percentile(perc_D, percentiles),
            np.percentile(cumulative, percentiles))
+
+def collect_city_pops(df, target, calc_diff, calc_per):
+   cities = set(df['City'])
+   cities.remove('NA')
+   city_pops = {}
+   diff = "0"
+   for city in cities:
+      city_pops[city] = count_city_pop(city, df['City'], df['Grade'], df['PHOLC'], df['Total'])
+   if calc_diff:
+      pwms = {}
+      for city in cities:
+         pwms[city] = calc_city_pwm(city, df['City'], df[target], df['Total'])
+      diff = "pwms[df['City'][i]]"
+   sorted_pops = list(city_pops.values())
+   sorted_pops.sort()
+
+   small_cities = []
+   medium_cities = []
+   large_cities = []
+
+   for i in range(0, 173):
+      small_cities.append(list(city_pops.keys())[list(city_pops.values()).index(sorted_pops[i])])
+   for i in range(173, 194):
+      medium_cities.append(list(city_pops.keys())[list(city_pops.values()).index(sorted_pops[i])])
+   for i in range(194, 202):
+      large_cities.append(list(city_pops.keys())[list(city_pops.values()).index(sorted_pops[i])])
+   
+   small = [[], [], [], []]
+   medium = [[], [], [], []]
+   large = [[], [], [], []]
+
+   per = "1"
+   if calc_per:
+      per = "pwms[df['City'][i]]"
+
+   for i in df.index:
+      if df['City'][i] in small_cities:
+         if df['Grade'][i] == 'A':
+            small[0] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'B':
+            small[1] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'C':
+            small[2] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'D':
+            small[3] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+      if df['City'][i] in medium_cities:
+         if df['Grade'][i] == 'A':
+            medium[0] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'B':
+            medium[1] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'C':
+            medium[2] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'D':
+            medium[3] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+      if df['City'][i] in large_cities:
+         if df['Grade'][i] == 'A':
+            large[0] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'B':
+            large[1] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'C':
+            large[2] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+         if df['Grade'][i] == 'D':
+            large[3] += (round(df['PHOLC'][i] * df['Total'][i]) * [((df[target][i]) - eval(diff)) / eval(per)])
+   
+   if calc_per:
+      small[0] = [x * 100 for x in small[0]]
+      small[1] = [x * 100 for x in small[1]]
+      small[2] = [x * 100 for x in small[2]]
+      small[3] = [x * 100 for x in small[3]]
+      medium[0] = [x * 100 for x in medium[0]]
+      medium[1] = [x * 100 for x in medium[1]]
+      medium[2] = [x * 100 for x in medium[2]]
+      medium[3] = [x * 100 for x in medium[3]]
+      large[0] = [x * 100 for x in large[0]]
+      large[1] = [x * 100 for x in large[1]]
+      large[2] = [x * 100 for x in large[2]]
+      large[3] = [x * 100 for x in large[3]]
+   
+   small_data = [np.average(x) for x in small]
+   medium_data = [np.average(x) for x in medium]
+   large_data = [np.average(x) for x in large]
+
+   return [small_data, medium_data, large_data]
