@@ -50,3 +50,8 @@
 
 - Abstracted Figure S3 script functions into `utils.py`
 - Abstracted Figure S4 script functions into `utils.py`
+
+### July 21, 2023
+
+- Abstracted Figure S5 script functions into `utils.py`
+- Updated changelog and roadmap for future
