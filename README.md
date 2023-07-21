@@ -27,9 +27,7 @@ University.
 
 ### Repo Organization
 
-The folders store each of the respective generated plots from the study. Each
-folder (will) also contain a Jupyter Notebook write-up providing more
-comprehensive overview of the code used to generate its graphs.
+The folders store each of the respective generated plots from the study.
 
 ### Execution
 
@@ -50,7 +48,7 @@ better, please fork the repo and create a pull request.
 
 ## Changelog
 
-### Roadmap
+### Version Control
 
 See `changelog.md`.
 
@@ -59,8 +57,13 @@ See `changelog.md`.
 - [ ] Abstract repetitive functions from code into utility file
 - [ ] Rename scripts and generated plot images
 - [ ] Finish writing comments in code
-- [ ] Adjust additional plot visual details (legend, dimensions, colors)
-- [ ] Include Jupyter Notebook writeups in folders
+- [ ] Adjust additional plot visual details (scale, legend, colors, caption
+      descriptions)
+- [ ] Add detailed analysis of code, methods, and interpretation of results in
+      Jupyter Notebook format
+- [ ] Extrapolate code and analysis to regional (DMV area) and local statistics
+      (Baltimore City)
+= [ ] Add `docs` folder to store Web links to study
 
 ## Credits
 
