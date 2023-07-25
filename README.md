@@ -57,8 +57,7 @@ See `changelog.md`.
 - [x] Abstract repetitive functions from code into utility file
 - [x] Rename scripts and generated plot images
 - [ ] Finish writing comments in code
-- [x] Adjust additional plot visual details (scale, legend, colors, caption
-      descriptions)
+- [x] Adjust additional plot visual details (scale, legend, colors, labels)
 - [ ] Add detailed analysis of code, methods, and interpretation of results in
       Jupyter Notebook format
 - [ ] Extrapolate code and analysis to regional (DMV area) and local statistics
