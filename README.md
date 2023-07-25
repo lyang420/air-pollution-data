@@ -54,10 +54,10 @@ See `changelog.md`.
 
 ### To Do
 
-- [ ] Abstract repetitive functions from code into utility file
-- [ ] Rename scripts and generated plot images
+- [x] Abstract repetitive functions from code into utility file
+- [x] Rename scripts and generated plot images
 - [ ] Finish writing comments in code
-- [ ] Adjust additional plot visual details (scale, legend, colors, caption
+- [x] Adjust additional plot visual details (scale, legend, colors, caption
       descriptions)
 - [ ] Add detailed analysis of code, methods, and interpretation of results in
       Jupyter Notebook format
