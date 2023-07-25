@@ -55,3 +55,15 @@
 
 - Abstracted Figure S5 script functions into `utils.py`
 - Updated changelog and roadmap for future
+
+### July 24, 2023
+- Finished abstracting Figure 1 script functions to `utils.py`, commented
+- Renamed Figure 1 scripts and generated images
+- Adjusted additional plot cosmetic details (scale, legend, mean, captions)
+
+### July 25, 2023
+- Finished abstracting Figure 2 script functions to `utils.py`, commented
+- Renamed Figure 2 scripts and generated images
+- Adjusted additional plot cosmetic details (scale, legend, mean, captions)
+- Did the same for Figure S3
+- Did the same for Figure S4
