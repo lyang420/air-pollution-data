@@ -60,8 +60,7 @@ See `changelog.md`.
 - [x] Adjust additional plot visual details (scale, legend, colors, labels)
 - [ ] Add detailed analysis of code, methods, and interpretation of results in
       Jupyter Notebook format
-- [ ] Extrapolate code and analysis to regional (DMV area) and local statistics
-      (Baltimore City)
+- [ ] Extrapolate code and analysis to local analysis (Baltimore)
 - [ ] Add `docs` folder to store Web links to study
 
 ## Credits
