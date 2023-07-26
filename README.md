@@ -58,8 +58,7 @@ See `changelog.md`.
 - [x] Rename scripts and generated plot images
 - [ ] Finish writing comments in code
 - [x] Adjust additional plot visual details (scale, legend, colors, labels)
-- [ ] Add detailed analysis of code, methods, and interpretation of results in
-      Jupyter Notebook format
+- [ ] Construct detailed writeup in the form of Jupyter Notebook
 - [ ] Extrapolate code and analysis to local analysis (Baltimore)
 - [ ] Add `docs` folder to store Web links to study
 
