@@ -59,7 +59,7 @@ See `changelog.md`.
 - [ ] Finish adjusting indentation and adding comments in code
 - [x] Adjust additional plot visual details (scale, legend, colors, labels)
 - [ ] Construct detailed writeup in the form of Jupyter Notebook
-- [ ] Extrapolate code and analysis to local analysis (Baltimore)
+- [x] Extrapolate code and analysis to local analysis (Baltimore)
 - [ ] Add `docs` folder to store Web links to study
 
 ## Credits
