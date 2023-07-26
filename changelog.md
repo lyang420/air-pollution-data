@@ -68,3 +68,7 @@
 - Did the same for Figure S3
 - Did the same for Figure S4
 - Did the same for Figure S5
+
+### July 26, 2023
+- Extrapolated abstracted code and applied solely to data labeled from
+  Baltimore, MD; newly generated plots uploaded to their own folder
