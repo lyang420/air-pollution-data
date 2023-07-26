@@ -19,7 +19,7 @@ def generate_plot(weights, width, title, x_label, y_label, y_tick_loc, y_ticks, 
 
 df = init()
 
-numeric_data, percentage_data = collect_data_residents(df, 'PHOLC')
+numeric_data, percentage_data = collect_data_residents(df, 'PHOLC', 1000000.0)
 grades = ("A", "B", "C", "D")
 
 numeric_weights = {
