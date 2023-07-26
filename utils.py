@@ -200,7 +200,7 @@ def collect_data_intraurban_diff(df, population_factor, target_data):
 # primarily in Figure S3 to showcase the association between race/ethnicity and
 # HOLC grade, which bridges the link between race/ethnicity and air pollution
 # levels as seen in Figures 1 and 2, among others.
-def collect_data_residents(df, population_factor):
+def collect_data_residents(df, population_factor, divisor):
 
    def collect_demographic_data(df, population_factor, residents, index, grade):
       residents[0][grade] += (round(df[population_factor][index] * df['White'][index]))
@@ -226,7 +226,6 @@ def collect_data_residents(df, population_factor):
    asian = [0] * 4
    hispanic = [0] * 4
    residents = [white, other, black, asian, hispanic]
-   divisor = 1000000.0
 
    for i in df.index:
       if df['Grade'][i] == 'A':
