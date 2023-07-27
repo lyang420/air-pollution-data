@@ -16,9 +16,9 @@ def compute_pwm(grade, population_factor, population, target_data):
    target_data = target_data[condition]
    return np.average(target_data, weights = round(population_factor * population))
 
-def create_figure_1(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm, national_pm25_pwm):
+def create_figure_1(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm,
+                    national_pm25_pwm):
 
-   # Collect air pollutant levels by HOLC grade and by ethnicity
    def collect_data(df, population_factor, target_data, difference):
       HOLC_A_data = []
       HOLC_B_data = []
@@ -31,25 +31,27 @@ def create_figure_1(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm,
       hispanic    = []
 
       for i in df.index:
-         datapoint = (round(df[population_factor][i] * df['Total'][i]) * [(df[target_data][i]) - difference])
+         datapoint = [(df[target_data][i]) - difference]
          if df['Grade'][i] == 'A':
-            HOLC_A_data += datapoint
+            HOLC_A_data += (round(df[population_factor][i] * df['Total'][i]) * datapoint)
          if df['Grade'][i] == 'B':
-            HOLC_B_data += datapoint
+            HOLC_B_data += (round(df[population_factor][i] * df['Total'][i]) * datapoint)
          if df['Grade'][i] == 'C':
-            HOLC_C_data += datapoint
+            HOLC_C_data += (round(df[population_factor][i] * df['Total'][i]) * datapoint)
          if df['Grade'][i] == 'D':
-            HOLC_D_data += datapoint
+            HOLC_D_data += (round(df[population_factor][i] * df['Total'][i]) * datapoint)
          if df['Grade'][i] != 'N':
-            white += (round(df[population_factor][i] * df['White'][i]) * [(df[target_data][i]) - difference])
-            other += (round(df[population_factor][i] * df['Other'][i]) * [(df[target_data][i]) - difference])
-            black += (round(df[population_factor][i] * df['Black'][i]) * [(df[target_data][i]) - difference])
-            asian += (round(df[population_factor][i] * df['Asian'][i]) * [(df[target_data][i]) - difference])
-            hispanic += (round(df[population_factor][i] * df['Hispanic'][i]) * [(df[target_data][i]) - difference])
+            white += (round(df[population_factor][i] * df['White'][i]) * datapoint)
+            other += (round(df[population_factor][i] * df['Other'][i]) * datapoint)
+            black += (round(df[population_factor][i] * df['Black'][i]) * datapoint)
+            asian += (round(df[population_factor][i] * df['Asian'][i]) * datapoint)
+            hispanic += (round(df[population_factor][i] * df['Hispanic'][i]) * datapoint)
       
-      return [HOLC_A_data, HOLC_B_data, HOLC_C_data, HOLC_D_data, white, other, black, asian, hispanic]
+      return [HOLC_A_data, HOLC_B_data, HOLC_C_data, HOLC_D_data, white, other,
+              black, asian, hispanic]
 
-   def generate_fig_1(data, labels, title, x_label, y_label, min_y, max_y, colors, file_name):
+   def generate_fig_1(data, labels, title, x_label, y_label, min_y, max_y,
+                      colors, file_name):
       fig, ax = plt.subplots(nrows = 1, ncols = 1)
       plot = ax.boxplot(data, labels = labels, patch_artist = True,
                         showfliers = False, showmeans = True, vert = True, whis = 0,
@@ -59,49 +61,63 @@ def create_figure_1(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm,
       ax.set_ylabel(y_label)
       ax.set_ylim(min_y, max_y)
       ax.axhline(y = np.nanmean([elem for lst in data for elem in lst]),
-               color = 'black', linestyle = '--', linewidth = 1, label = 'Overall Mean')
+                 color = 'black', linestyle = '--', linewidth = 1, label = 'Overall Mean')
       ax.legend()
       for median in plot['medians']: median.set_color('black')
       for patch, color in zip(plot['boxes'], colors): patch.set_facecolor(color)
       plt.savefig(file_name, dpi = 300)
 
-   local_no2_data_unadjusted = collect_data(local_data, 'PHOLC', 'NO2', 0)
-   local_no2_data_adjusted = collect_data(local_data, 'PHOLC', 'NO2', local_no2_pwm)
-   compare_no2_national = collect_data(local_data, 'PHOLC', 'NO2', national_no2_pwm)
+   local_no2_data_unadjusted  = collect_data(local_data, 'PHOLC', 'NO2',  0)
+   local_no2_data_adjusted    = collect_data(local_data, 'PHOLC', 'NO2',  local_no2_pwm)
+   compare_no2_national       = collect_data(local_data, 'PHOLC', 'NO2',  national_no2_pwm)
    local_pm25_data_unadjusted = collect_data(local_data, 'PHOLC', 'PM25', 0)
-   local_pm25_data_adjusted = collect_data(local_data, 'PHOLC', 'PM25', local_pm25_pwm)
-   compare_pm25_national = collect_data(local_data, 'PHOLC', 'PM25', national_pm25_pwm)
+   local_pm25_data_adjusted   = collect_data(local_data, 'PHOLC', 'PM25', local_pm25_pwm)
+   compare_pm25_national      = collect_data(local_data, 'PHOLC', 'PM25', national_pm25_pwm)
 
    labels  = ['A', 'B', 'C', 'D', 'White', 'Other', 'Black', 'Asian', 'Hispanic']
    x_label = 'HOLC Grade and Race/Ethnicity'
    colors  = ['lightcoral', 'burlywood', 'lightgreen', 'lightskyblue',
             'firebrick', 'orchid', 'darkkhaki', 'darkseagreen', 'cornflowerblue']
 
-   generate_fig_1(local_no2_data_unadjusted, labels, 'Baltimore NO₂ Levels: Unadjusted',
-                  x_label, 'Population-Weighted NO₂ (ppb)', 5, 20, colors, 'figure-b1-1.png')
-   generate_fig_1(local_no2_data_adjusted, labels, 'Baltimore NO₂ Levels: Intraurban Difference',
-                  x_label, 'Population-Weighted NO₂ (ppb)', -7.5, 7.5, colors, 'figure-b1-2.png')
-   generate_fig_1(compare_no2_national, labels, 'Baltimore NO₂ Levels: National Difference',
-                  x_label, 'Population-Weighted NO₂ (ppb)', -7.5, 7.5, colors, 'figure-b1-3.png')
-   
-   generate_fig_1(local_pm25_data_unadjusted, labels, 'Baltimore PM₂.₅ Levels: Unadjusted',
-                  x_label, 'Population-Weighted PM₂.₅ (μg/m³)', 10, 12, colors, 'figure-b1-4.png')
-   generate_fig_1(local_pm25_data_adjusted, labels, 'Baltimore PM₂.₅ Levels: Intraurban Difference',
-                  x_label, 'Population-Weighted PM₂.₅ (μg/m³)', -1, 1.2, colors, 'figure-b1-5.png')
-   generate_fig_1(compare_pm25_national, labels, 'Baltimore PM₂.₅ Levels: National Difference',
-                  x_label, 'Population-Weighted PM₂.₅ (μg/m³)', -1, 1.2, colors, 'figure-b1-6.png')
+   generate_fig_1(local_no2_data_unadjusted, labels,
+                  'Baltimore NO₂ Levels: Unadjusted', x_label,
+                  'Population-Weighted NO₂ (ppb)', 5, 20, colors,
+                  'figure-b1-1.png')
+   generate_fig_1(local_no2_data_adjusted, labels,
+                  'Baltimore NO₂ Levels: Intraurban Difference', x_label,
+                  'Population-Weighted NO₂ (ppb)', -7.5, 7.5, colors,
+                  'figure-b1-2.png')
+   generate_fig_1(compare_no2_national, labels,
+                  'Baltimore NO₂ Levels: National Difference', x_label,
+                  'Population-Weighted NO₂ (ppb)', -7.5, 7.5, colors,
+                  'figure-b1-3.png')
+   generate_fig_1(local_pm25_data_unadjusted, labels,
+                  'Baltimore PM₂.₅ Levels: Unadjusted', x_label,
+                  'Population-Weighted PM₂.₅ (μg/m³)', 10, 12, colors,
+                  'figure-b1-4.png')
+   generate_fig_1(local_pm25_data_adjusted, labels,
+                  'Baltimore PM₂.₅ Levels: Intraurban Difference', x_label,
+                  'Population-Weighted PM₂.₅ (μg/m³)', -1, 1.2, colors,
+                  'figure-b1-5.png')
+   generate_fig_1(compare_pm25_national, labels,
+                  'Baltimore PM₂.₅ Levels: National Difference', x_label,
+                  'Population-Weighted PM₂.₅ (μg/m³)', -1, 1.2, colors,
+                  'figure-b1-6.png')
 
-def create_figure_2(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm, national_pm25_pwm):
+def create_figure_2(local_data, local_no2_pwm, local_pm25_pwm,
+                    national_no2_pwm, national_pm25_pwm):
 
    def collect_data(df, population_factor, target_data, pwm):
 
-      def collect_demographic_data(df, population_factor, population, target_data, pwm):
+      def collect_demographic_data(df, population_factor, population,
+                                   target_data, pwm):
          A_data = []
          B_data = []
          C_data = []
          D_data = []
          for i in df.index:
-            datapoint = (round(df[population_factor][i] * df[population][i]) * [df[target_data][i] - pwm])
+            datapoint = (round(df[population_factor][i] * df[population][i]) *
+                         [df[target_data][i] - pwm])
             if df['Grade'][i] == 'A':
                A_data += datapoint
             if df['Grade'][i] == 'B':
@@ -110,15 +126,15 @@ def create_figure_2(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm,
                C_data += datapoint
             if df['Grade'][i] == 'D':
                D_data += datapoint
-         return [np.average(A_data), np.average(B_data), np.average(C_data), np.average(D_data)]
+         return [np.average(A_data), np.average(B_data), np.average(C_data),
+                 np.average(D_data)]
 
       hispanic = collect_demographic_data(df, population_factor, 'Hispanic', target_data, pwm)
       asian = collect_demographic_data(df, population_factor, 'Asian', target_data, pwm)
       black = collect_demographic_data(df, population_factor, 'Black', target_data, pwm)
       total = collect_demographic_data(df, population_factor, 'Total', target_data, pwm)
       white = collect_demographic_data(df, population_factor, 'White', target_data, pwm)
-      res = [hispanic, asian, black, total, white]
-      return res
+      return [hispanic, asian, black, total, white]
 
    def generate_fig_2(data, axes, x_label, y_label, min_y, max_y, file_name):
       fig, ax = plt.subplots()
@@ -134,22 +150,29 @@ def create_figure_2(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm,
       ax.legend()
       plt.savefig(file_name, dpi = 300)
 
-   local_no2_diff = collect_data(local_data, 'PHOLC', 'NO2', local_no2_pwm)
-   national_no2_diff = collect_data(local_data, 'PHOLC', 'NO2', national_no2_pwm)
-   local_pm25_diff = collect_data(local_data, 'PHOLC', 'PM25', local_pm25_pwm)
+   local_no2_diff     = collect_data(local_data, 'PHOLC', 'NO2',  local_no2_pwm)
+   national_no2_diff  = collect_data(local_data, 'PHOLC', 'NO2',  national_no2_pwm)
+   local_pm25_diff    = collect_data(local_data, 'PHOLC', 'PM25', local_pm25_pwm)
    national_pm25_diff = collect_data(local_data, 'PHOLC', 'PM25', national_pm25_pwm)
 
    axes = ['A', 'B', 'C', 'D']
    x_label = 'HOLC Grade'
 
-   generate_fig_2(local_no2_diff, axes, x_label, 'Intraurban NO₂ Difference (ppb)', -6, 6, 'figure-b2-1.png')
-   generate_fig_2(national_no2_diff, axes, x_label, 'National NO₂ Difference (ppb)', -6, 6, 'figure-b2-2.png')
-   generate_fig_2(local_pm25_diff, axes, x_label, 'Intraurban PM₂.₅ Difference (μg/m³)', -0.8, 0.8, 'figure-b2-3.png')
-   generate_fig_2(national_pm25_diff, axes, x_label, 'National PM₂.₅ Difference (μg/m³)', -0.8, 0.8, 'figure-b2-4.png')
+   generate_fig_2(local_no2_diff, axes, x_label,
+                  'Intraurban NO₂ Difference (ppb)', -6, 6, 'figure-b2-1.png')
+   generate_fig_2(national_no2_diff, axes, x_label,
+                  'National NO₂ Difference (ppb)', -6, 6, 'figure-b2-2.png')
+   generate_fig_2(local_pm25_diff, axes, x_label,
+                  'Intraurban PM₂.₅ Difference (μg/m³)', -0.8, 0.8,
+                  'figure-b2-3.png')
+   generate_fig_2(national_pm25_diff, axes, x_label,
+                  'National PM₂.₅ Difference (μg/m³)', -0.8, 0.8,
+                  'figure-b2-4.png')
 
 def create_figure_3(all_data, local_data):
 
-   def generate_fig_3_1(weights, width, title, x_label, y_label, y_tick_loc, y_ticks, file_name):
+   def generate_fig_3_1(weights, width, title, x_label, y_label, y_tick_loc,
+                        y_ticks, file_name):
       fig, ax = plt.subplots()
       bottom = np.zeros(4)
       for ethnicity, weight_count in weights.items():
@@ -178,7 +201,9 @@ def create_figure_3(all_data, local_data):
 
    local_numeric_data, local_percentage_data = collect_data_residents(local_data, 'PHOLC', 10000.0)
    national_numeric_data, national_percentage_data = collect_data_residents(all_data, 'PHOLC', 1000000.0)
+
    grades = ("A", "B", "C", "D")
+
    numeric_weights = {
       "White": local_numeric_data[0],
       "Other": local_numeric_data[1],
@@ -186,6 +211,7 @@ def create_figure_3(all_data, local_data):
       "Asian": local_numeric_data[3],
       "Hispanic": local_numeric_data[4]
    }
+
    percentage_weights = {
       "White": local_percentage_data[0],
       "Other": local_percentage_data[1],
@@ -193,22 +219,29 @@ def create_figure_3(all_data, local_data):
       "Asian": local_percentage_data[3],
       "Hispanic": local_percentage_data[4]
    }
-   generate_fig_3_1(numeric_weights, 0.65, 'Baltimore Resident Demographics in HOLC-Mapped Areas',
-                     'HOLC Grade', 'Population (Per 10,000)',
-                     (0, 5, 10, 15, 20, 25), (0, 5, 10, 15, 20, 25), 'figure-b3-1.png')
-   generate_fig_3_1(percentage_weights, 0.65, 'Baltimore Resident Demographics in HOLC-Mapped Areas',
-                     'HOLC Grade', 'Population (Percentages)',
-                     (0, 25, 50, 75, 100), ('0%', '25%', '50%', '75%', '100%'), 'figure-b3-2.png')
+
+   generate_fig_3_1(numeric_weights, 0.65,
+                    'Baltimore Resident Demographics in HOLC-Mapped Areas',
+                    'HOLC Grade', 'Population (Per 10,000)',
+                    (0, 5, 10, 15, 20, 25), (0, 5, 10, 15, 20, 25),
+                    'figure-b3-1.png')
+   generate_fig_3_1(percentage_weights, 0.65,
+                    'Baltimore Resident Demographics in HOLC-Mapped Areas',
+                    'HOLC Grade', 'Population (Percentages)',
+                    (0, 25, 50, 75, 100), ('0%', '25%', '50%', '75%', '100%'),
+                    'figure-b3-2.png')
 
    national_per = np.array(national_percentage_data)
    diff_per = list(np.subtract(local_percentage_data, national_per))
 
    generate_fig_3_2(diff_per, ['A', 'B', 'C', 'D'], 'HOLC Grade',
-                    'Demographic Percentage Difference Distribution', -40, 40, 'figure-b3-3.png')
+                    'Demographic Percentage Difference Distribution', -40, 40,
+                    'figure-b3-3.png')
    
 def create_figure_4(local_data):
 
-   def generate_fig_4(data, percentiles, title, x_label, y_label, x_tick_loc, x_ticks, file_name):
+   def generate_fig_4(data, percentiles, title, x_label, y_label, x_tick_loc,
+                      x_ticks, file_name):
       fig, ax = plt.subplots()
       l1 = plt.scatter(percentiles, data[0], s = 5, label = 'HOLC Grade A')
       l2 = plt.scatter(percentiles, data[1], s = 5, label = 'HOLC Grade B')
@@ -224,19 +257,19 @@ def create_figure_4(local_data):
       ax.grid(color = "gainsboro")
       plt.savefig(file_name, dpi = 300)
 
-   baltimore_no2_cum = collect_data_percentile(local_data, 'PHOLC', 'Total', 'NO2')
+   baltimore_no2_cum  = collect_data_percentile(local_data, 'PHOLC', 'Total', 'NO2')
    baltimore_pm25_cum = collect_data_percentile(local_data, 'PHOLC', 'Total', 'PM25')
    percentiles = range(0, 100)
    ticks = (0.01, 10, 20, 30, 40, 50, 60, 70, 80, 90, 99.99)
 
-   generate_fig_4(baltimore_no2_cum, percentiles, 'Baltimore Cumulative NO₂ Distribution',
-                  'Population Percentile', 'NO₂ (ppb)', ticks, ticks, 'figure-b4-1.png')
-   generate_fig_4(baltimore_pm25_cum, percentiles, 'Baltimore Cumulative PM₂.₅ Distribution',
-                  'Population Percentile', 'PM₂.₅ (μg/m³)', ticks, ticks, 'figure-b4-2.png')
-
-
-
-
+   generate_fig_4(baltimore_no2_cum, percentiles,
+                  'Baltimore Cumulative NO₂ Distribution',
+                  'Population Percentile', 'NO₂ (ppb)', ticks, ticks,
+                  'figure-b4-1.png')
+   generate_fig_4(baltimore_pm25_cum, percentiles,
+                  'Baltimore Cumulative PM₂.₅ Distribution',
+                  'Population Percentile', 'PM₂.₅ (μg/m³)', ticks, ticks,
+                  'figure-b4-2.png')
 
 # Nationwide statistics
 national_df = init()
@@ -244,15 +277,18 @@ national_df = init()
 # Baltimore statistics
 baltimore_df = national_df[national_df['City'] == 'Baltimore, MD']
 
-local_no2_pwm = compute_pwm(baltimore_df['Grade'], baltimore_df['PHOLC'], baltimore_df['Total'], baltimore_df['NO2'])
-local_pm25_pwm = compute_pwm(baltimore_df['Grade'], baltimore_df['PHOLC'], baltimore_df['Total'], baltimore_df['PM25'])
-national_no2_pwm = compute_pwm(national_df['Grade'], national_df['PHOLC'], national_df['Total'], national_df['NO2'])
-national_pm25_pwm = compute_pwm(national_df['Grade'], national_df['PHOLC'], national_df['Total'], national_df['PM25'])
+local_no2_pwm = compute_pwm(baltimore_df['Grade'], baltimore_df['PHOLC'],
+                            baltimore_df['Total'], baltimore_df['NO2'])
+local_pm25_pwm = compute_pwm(baltimore_df['Grade'], baltimore_df['PHOLC'],
+                             baltimore_df['Total'], baltimore_df['PM25'])
+national_no2_pwm = compute_pwm(national_df['Grade'], national_df['PHOLC'],
+                               national_df['Total'], national_df['NO2'])
+national_pm25_pwm = compute_pwm(national_df['Grade'], national_df['PHOLC'],
+                                national_df['Total'], national_df['PM25'])
 
 # Comment out whichever plots you don't want to generate so you don't have to
 # wait half an hour for it to redo everything
-
-# create_figure_1(baltimore_df, local_no2_pwm, local_pm25_pwm, national_no2_pwm, national_pm25_pwm)
-# create_figure_2(baltimore_df, local_no2_pwm, local_pm25_pwm, national_no2_pwm, national_pm25_pwm)
-# create_figure_3(national_df, baltimore_df)
-# create_figure_4(baltimore_df)
+create_figure_1(baltimore_df, local_no2_pwm, local_pm25_pwm, national_no2_pwm, national_pm25_pwm)
+create_figure_2(baltimore_df, local_no2_pwm, local_pm25_pwm, national_no2_pwm, national_pm25_pwm)
+create_figure_3(national_df, baltimore_df)
+create_figure_4(baltimore_df)
