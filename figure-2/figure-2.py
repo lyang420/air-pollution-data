@@ -20,14 +20,14 @@ def generate_plot(data, axes, x_label, y_label, y_min, y_max, y_ticks, file_name
 
 df = init()
 
-no2_intraurban_diff = collect_data_intraurban_diff(df, 'PHOLC', 'NO2')
+no2_intraurban_diff  = collect_data_intraurban_diff(df, 'PHOLC', 'NO2')
 pm25_intraurban_diff = collect_data_intraurban_diff(df, 'PHOLC', 'PM25')
 
 axes = ['A', 'B', 'C', 'D']
 
 generate_plot(no2_intraurban_diff, axes, 'HOLC Grade',
-              'Intraurban NO₂ Difference (ppb)', -2.5, 1.5,
-              (-2, -1, 0, 1), 'figure-2-a.png')
+              'Intraurban NO₂ Difference (ppb)', -2.5, 1.5, (-2, -1, 0, 1),
+              'figure-2-a.png')
 generate_plot(pm25_intraurban_diff, axes, 'HOLC Grade',
               'Intraurban PM₂.₅ Difference (μg/m³)', -0.4, 0.2,
               (-0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2), 'figure-2-b.png')
