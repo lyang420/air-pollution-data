@@ -41,7 +41,7 @@ was abstracted to.
 
 ### Running the Code
 
-Execute the code as you normally would by entering `python [file-name]` on the
+Execute the code as you normally would by entering `python3 file-name` on the
 command line, where `file-name` is the name of the script you want to run.
 
 Be sure to have `utils.py` and the raw data file in the same directory. The raw
