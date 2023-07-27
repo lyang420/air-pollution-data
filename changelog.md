@@ -3,72 +3,85 @@
 ### July 3, 2023
 
 - Initialized GitHub repo
-- Added description and credits
-- Added code to initialize DataFrame
-- Large files cannot be uploaded to GitHub without Large File Storage (LSF)
-- Added code to generate plots from Figure 1
-- Generated plots moved to own folders
+- Wrote first draft of `README`
+- Added code to initialize pandas DataFrame
+- Added code to generate plots from study's Figure 1
+- Moved generated plot image files to their own folders
 
 ### July 5, 2023
 
-- Added code to generate plots from Figure 2
-- Slight but noticeable differences in distribution of air pollution levels
-  with ethnicity, but not with HOLC grade
+- Added code to generate plots from study's Figure 2
+- Discovered slight, but noticeable difference in numbers displayed in the
+  plots that I generated from the plots in the study
 
 ### July 6, 2023
 
-- Fixed discrepancy in plots from Figures 1 and 2; these plots are only
-  meant to display air pollution levels in HOLC-mapped areas, was not
-  explicitly checking for this before
+- Fixed discrepancy in numbers from July 5; some of the plots only model air
+  pollution levels in HOLC-mapped areas, but the raw data contains blocks that
+  do not have an HOLC grade attached -- these should not be included in the
+  data fed to the plot generation function
 
 ### July 7, 2023
 
-- Factored PHOLC into plots from Figures 1 and 2
+- Factored PHOLC into the script used to generate plots from Figures 1 and 2
 - Inefficient code may result in slower runtime
 
 ### July 10, 2023
 
-- Added code to generate plots from Figure S3
-- Added comments to code to generate plots from Figures 1, 2, and S3
-- Edited README to include todo
-- Added code to generate modified version of plot from Figure S4
+- Added code to generate plots from study's Figure S3
+- Wrote comments in scripts generating plots from Figures 1, 2, and S3
+- Edited `README` to include a to-do section
+- Added code to generate modified version of plot from study's Figure S4
 
 ### July 12, 2023
 
-- Added code to generate six additional plots from Figure S5
-- Made note of major number discrepancy in city size from Figure S5
+- Added code to generate plots from study's Figure S5
+- Noticed major discrepancy in determination of city size from study's Figure
+  S5
 
 ### July 19, 2023
 
-- Reformatted README, todo
-- Abstracted Figure 1 script functions into `utils.py`, could go a step further
-  and combine all four into one script, but that would take something like ten
-  minutes to run to completion
-- Abstracted Figure 2 script functions into `utils.py`
+- Edited `README`, specifically to-do section to be more comprehensible
+- Abstracted functions used to generate Figure 1 to `utils.py`
+- Abstracted functions used to generate Figure 2 to `utils.py`
 
 ### July 20, 2023
 
-- Abstracted Figure S3 script functions into `utils.py`
-- Abstracted Figure S4 script functions into `utils.py`
+- Abstracted functions used to generate Figure S3 to `utils.py`
+- Abstracted functions used to generate Figure S4 to `utils.py`
 
 ### July 21, 2023
 
-- Abstracted Figure S5 script functions into `utils.py`
-- Updated changelog and roadmap for future
+- Abstracted functions used to generate Figure S5 to `utils.py`
+- Updated `changelog` to reflect this week's progress
+- Updated to-dos with notes on how to improve code efficiency, other plots to
+  generate, and how to improve repo presentation next week
 
 ### July 24, 2023
-- Finished abstracting Figure 1 script functions to `utils.py`, commented
-- Renamed Figure 1 scripts and generated images
-- Adjusted additional plot cosmetic details (scale, legend, mean, captions)
+
+- Finished abstracting functions used to generate Figure 1 to `utils.py` and
+  added comments
+- Renamed script and image files relating to Figure 1
+- Added details to Figure 1 plots, including new title, axis labels, scale,
+  and overall mean and median
 
 ### July 25, 2023
-- Finished abstracting Figure 2 script functions to `utils.py`, commented
-- Renamed Figure 2 scripts and generated images
-- Adjusted additional plot cosmetic details (scale, legend, mean, captions)
-- Did the same for Figure S3
-- Did the same for Figure S4
-- Did the same for Figure S5
+
+- Finished abstracting functions used to generate Figure 2 to `utils.py` and
+  added comments
+- Renamed script and image files relating to Figure 2
+- Added details to Figure 2 plots, including new title, axis labels, and scale
+- Finished fine-tuning Figures S3, S4, and S5 in a similar manner
 
 ### July 26, 2023
-- Extrapolated abstracted code and applied solely to data labeled from
-  Baltimore, MD; newly generated plots uploaded to their own folder
+
+- Adjusted existing scripts appropriately to generate plots displaying air
+  pollution statistics for Baltimore, MD
+- Baltimore, MD code files moved to their own folder in the repository
+
+### July 27, 2023
+
+- Rewrote `README` and changelog to reflect progress made in the last week, and
+  what to accomplish in the coming weeks
+- Began the process of editing code indentation and style to make them more
+  readable to viewers
