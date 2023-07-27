@@ -9,37 +9,48 @@ United States and present-day air pollution levels. The link to this study
 
 https://pubs.acs.org/doi/10.1021/acs.estlett.1c01012?fig=tgr1&ref=pdf
 
-Once the code is ascertained to be able to accurately analyze data, the goal is
-to apply it to data regarding building projects in a smaller area in Baltimore
-City, as part of a project by Morgan State University and Georgetown
-University.
+Once the code is ascertained to be able to accurately analyze data from the
+study, the goal then is to apply it to data on building projects in Baltimore
+City, as part of a collaborative initiative by Morgan State University and
+Georgetown University.
 
 ## Table of Contents
 
-- [How to Read this Repo](#repo-organization)
-- [How to Run the Code](#execution)
-- [How to Contribute](#contributing)
+- [Repository Organization](#repo-organization)
+- [Running the Code](#execution)
+- [Contributing](#contributing)
 - [Changelog](#roadmap)
-- [To Dos](#to-do)
+- [To Do](#to-do)
 - [Credits](#credits)
 
 ## Usage
 
-### Repo Organization
+### Repository Organization
 
-The folders store each of the respective generated plots from the study.
+Currently, the repository has six folders. Five of them (`figure-1`,
+`figure-2`, `figure-s3`, `figure-s4` and `figure-s5`) stores plots that
+correspond to those seen in the study, as well as the Python scripts written to
+generate them. The sixth folder (`baltimore-figures`) contains plots of the
+same style as those seen in the study, but which display data relevant to
+Baltimore City.
 
-### Execution
+Outside of the folders, there is a `README`, as well as a changelog tracking
+progress made in the development of this repository. There is also a file
+`utils.py`, where many heavy utility functions used by the aforementioned code
+was abstracted to.
 
-The code files are stored in the main part of the repository. In order for them
-to run correctly, be sure to have the `utils.py` and the raw data file in the
-same folder. The raw data can be found here:
+### Running the Code
+
+Execute the code as you normally would by entering `python [file-name]` on the
+command line, where `file-name` is the name of the script you want to run.
+
+Be sure to have `utils.py` and the raw data file in the same directory. The raw
+data can be found here:
 
 https://figshare.com/articles/dataset/Historical_redlining_is_associated_with_present-day_air_pollution_disparities_in_U_S_cities_Associated_datasets/19193243?file=34300682
 
-Execute the code as you normally would in the terminal by entering
-`python [file-name]`, where `file-name` is the name of the script you want to
-run. Depending on your machine, runtime may be a few minutes.
+Depending on your machine and which script is being run, completion may take
+a few minutes.
 
 ### Contributing
 
@@ -54,16 +65,16 @@ See `changelog.md`.
 
 ### To Do
 
-- [x] Abstract repetitive functions from code into utility file
-- [x] Rename scripts and generated plot images
-- [ ] Finish adjusting indentation and adding comments in code
-- [x] Adjust additional plot visual details (scale, legend, colors, labels)
-- [ ] Construct detailed writeup in the form of Jupyter Notebook
-- [x] Extrapolate code and analysis to local analysis (Baltimore)
+- [x] Abstract repetitive functions from individual scripts to `utils.py`
+- [x] Adjust plot visual details (title, axis labels, scale, color, legend)
+- [x] Rename files
+- [x] Modify code to process local (Baltimore) data
+- [ ] Finish adjusting indentation and adding comments in scripts
+- [ ] Write detailed analysis in the form of a Jupyter Notebook file
 
 ## Credits
 
-Code written in Python.
+Code written in Python3.
 
 Study by Haley M. Lane, Rachel Morello-Frosch, Julian D. Marshall, and Joshua
 S. Apte (https://pubs.acs.org/doi/10.1021/acs.estlett.1c01012?fig=tgr1&ref=pdf)
