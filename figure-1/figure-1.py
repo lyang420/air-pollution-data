@@ -21,7 +21,8 @@ import numpy as np
 # customize the input data, as well as cosmetic details of each plot, such as
 # the labels to use, the title to name the plot, as well as the colors and
 # file name.
-def generate_plot(data, labels, title, x_label, y_label, min_y, max_y, y_ticks, colors, file_name):
+def generate_plot(data, labels, title, x_label, y_label, min_y, max_y, y_ticks,
+                  colors, file_name):
    fig, ax = plt.subplots(nrows = 1, ncols = 1)
    plot = ax.boxplot(data, labels = labels, patch_artist = True,
                      showfliers = False, showmeans = True, vert = True, whis = 0,
@@ -37,9 +38,6 @@ def generate_plot(data, labels, title, x_label, y_label, min_y, max_y, y_ticks, 
    for median in plot['medians']: median.set_color('black')
    for patch, color in zip(plot['boxes'], colors): patch.set_facecolor(color)
    plt.savefig(file_name, dpi = 300)
-
-# Script to collect data and generate plots begins here:
-# -----------------
 
 # Initialize DataFrame.
 df = init()
@@ -58,14 +56,14 @@ colors  = ['lightcoral', 'burlywood', 'lightgreen', 'lightskyblue',
 
 # Generate the four plots.
 generate_plot(no2_unadjusted, labels, 'Unadjusted NO₂ Levels: National',
-              x_label, 'Population-Weighted NO₂ (ppb)', 0, 25, (0, 5, 10, 15, 20, 25),
-              colors, 'figure-1-a.png')
+              x_label, 'Population-Weighted NO₂ (ppb)', 0, 25,
+              (0, 5, 10, 15, 20, 25), colors, 'figure-1-a.png')
 generate_plot(pm25_unadjusted, labels, 'Unadjusted PM₂.₅ Levels: National',
               x_label, 'Population-Weighted PM₂.₅ (μg/m³)', 0, 15, (0, 5, 10),
               colors, 'figure-1-b.png')
 generate_plot(no2_adjusted, labels, 'Adjusted NO₂ Levels: Intraurban Variation',
-              x_label, 'Intraurban NO₂ Difference (ppb)', -4, 3, (-4, -2, 0, 2),
+              x_label, 'Intraurban NO₂ Difference (ppb)', -4, 3,(-4, -2, 0, 2),
               colors, 'figure-1-c.png')
 generate_plot(pm25_adjusted, labels, 'Adjusted PM₂.₅ Levels: Intraurban Variation',
-              x_label, 'Intraurban PM2.5 Difference (μg/m³)', -0.8, 0.6, (-0.8, -0.4, 0.0, 0.4),
-              colors, 'figure-1-d.png')
+              x_label, 'Intraurban PM₂.₅ Difference (μg/m³)', -0.8, 0.6,
+              (-0.8, -0.4, 0.0, 0.4), colors, 'figure-1-d.png')
