@@ -60,7 +60,6 @@ See `changelog.md`.
 - [x] Adjust additional plot visual details (scale, legend, colors, labels)
 - [ ] Construct detailed writeup in the form of Jupyter Notebook
 - [x] Extrapolate code and analysis to local analysis (Baltimore)
-- [ ] Add `docs` folder to store Web links to study
 
 ## Credits
 
