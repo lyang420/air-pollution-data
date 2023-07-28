@@ -217,6 +217,13 @@ def collect_data_intraurban_diff(df, population_factor, target_data):
       B_data = []
       C_data = []
       D_data = []
+
+      # If you think about it, this is in fact very similar to a function
+      # previously defined in this file, `collect_data`. The difference is that
+      # this function only classifies data by HOLC grade, and returns their
+      # averages in a list; and that this function focuses only on one
+      # population of interest, and is called by another function several
+      # times.
       for i in df.index:
          datapoint = (round(df[population_factor][i] * df[population][i]) *
                       [df[target_data][i] - pwms[df['City'][i]]])
@@ -230,11 +237,17 @@ def collect_data_intraurban_diff(df, population_factor, target_data):
             D_data += datapoint
       return [np.average(A_data), np.average(B_data), np.average(C_data), np.average(D_data)]
 
+   # Create a list containing all unique cities present in the data.
    cities = list(set(df['City']))
+
+   # Create a dictionary containing all unique cities, and their corresponding
+   # population-weighted mean concentration of air pollutant.
    pwms = {}
    for city in cities:
       pwms[city] = calc_city_pwm(city, df['City'], df[target_data], df['Total'])
 
+   # Collect HOLC-grade specific, intraurban difference, data for each listed
+   # ethnicity, and then return them for further analysis (Figure 2).
    hispanic = collect_demographic_data(df, population_factor, 'Hispanic', target_data, pwms)
    asian = collect_demographic_data(df, population_factor, 'Asian', target_data, pwms)
    black = collect_demographic_data(df, population_factor, 'Black', target_data, pwms)
@@ -261,17 +274,27 @@ def collect_data_residents(df, population_factor, divisor):
       residents[4][grade] += (round(df[population_factor][index] * df['Hispanic'][index]))
 
    # Python is hilarious
+   # This function divides each element in a `lst` by `divisor`. I had to write
+   # this manually because `lst` isn't just a one-dimensional list, it's a list
+   # of more lists, and when I tried to perform this operation cleanly (i.e.,
+   # without iteration), it created a new variable which was subsequently
+   # discarded, and didn't modify the list in placee, which was the goal. So I
+   # had to do this explicitly, like this.
    def adjust_numerical_data(lst, divisor):
       res = []
       for sublist in lst: res.append([x / divisor for x in sublist])
       return res
 
    # lol
+   # Similar idea as `adjust_numerical_data` up above, this converts each
+   # element in a list to be a percentage of their total sample.
    def compute_percentages(lst, totals):
       res = []
       for elem, total in zip(lst, totals): res.append((elem / total) * 100)
       return res
 
+   # Population figures for each demographic. Each list has four spots to
+   # account for each HOLC grade.
    white = [0] * 4
    other = [0] * 4
    black = [0] * 4
@@ -289,14 +312,19 @@ def collect_data_residents(df, population_factor, divisor):
       if df['Grade'][i] == 'D':
          collect_demographic_data(df, population_factor, residents, i, 3)
    
+   # Divide each population number by a specified divisor, because otherwise,
+   # the plot is going to be crammed to the brim with numbers in the millions,
+   # or the hundreds of thousands, at the very least.
    numerical_data = adjust_numerical_data(residents, divisor)
 
+   # Collect the total number of people living in each HOLC grade so that we
+   # can have a list representing the _percentage_ of residents that are of
+   # some ethnicity in an HOLC grade.
    A_total = sum(lst[0] for lst in residents)
    B_total = sum(lst[1] for lst in residents)
    C_total = sum(lst[2] for lst in residents)
    D_total = sum(lst[3] for lst in residents)
    totals = [A_total, B_total, C_total, D_total]
-
    percentage_data = [compute_percentages(population, totals) for population in residents]
 
    return numerical_data, percentage_data
@@ -314,6 +342,9 @@ def collect_data_percentile(df, population_factor, population, target_data):
    cumulative = []
    percentiles = range (0, 100)
 
+   # This is also similar to `collect_data`, except that it only sorts air
+   # pollutant statistics by HOLC grade, and subsequently transforms them into
+   # percentile values before returning.
    for i in df.index:
       datapoint = (round(df[population_factor][i] * df[population][i]) * [df[target_data][i]])
       cumulative += datapoint
@@ -343,11 +374,17 @@ def collect_data_city(df, population_factor, population, target_data, calc_diff,
       population = population[condition]
       return sum(round(population_factor * population))
 
-   # `sort_city_pops` takes the list containing all unique cities from the study
-   # and their corresponding populations, and divides them into small, medium,
-   # and large cities. Classification of city size was based on population;
-   # according to the study, small cities contain roughly 16 million residents
-   # total, medium 11 million, and large 18 million.
+   # `sort_city_pops` takes the list containing all unique cities from the
+   # study and their corresponding populations, and divides them into "small,"
+   # "medium," and "large" cities. Classification of city size was based on
+   # population; according to the study, there were 162 "small" cities
+   # containing roughly 16 million residents in total, 29 "medium" cities with
+   # 11 million, and 11 "large" cities with 18 million. However, when I divided
+   # the total population into 162 small cities, 29 medium, and 11 large, I
+   # found the population numbers were different, skewing the resulting plots
+   # marginally. I also found that by classifying cities into city sizes based
+   # on _population_ (rather than 162 small, 29 medium, etc.), I'd achieve
+   # results closer to those shown in the study.
    def sort_city_pops(city_pops, sorted_populations):
       small_cities = []
       medium_cities = []
@@ -362,6 +399,9 @@ def collect_data_city(df, population_factor, population, target_data, calc_diff,
       
       return small_cities, medium_cities, large_cities
 
+   # `collect_city_measurements` checks to see if the `target_city` is part of
+   # the list of `cities`, and if so, adds the datapoint (the air pollutant
+   # concentration) to the list representing the appropriate HOLC grade.
    def collect_city_measurements(target_city, target_grade, cities, lst, datapoint):
       if target_city in cities:
          if target_grade == 'A':
@@ -373,11 +413,14 @@ def collect_data_city(df, population_factor, population, target_data, calc_diff,
          if target_grade == 'D':
             lst[3] += datapoint
 
+   # `adjust_percentages` multiplies each element in a list of lists by 100.
    def adjust_percentages(lst):
       res = []
       for sublist in lst: res.append([x * 100 for x in sublist])
       return res
 
+   # Initialize a dictionary containing each unique city in the study, and the
+   # number of people living in each of them.
    cities = set(df['City'])
    cities.remove('NA')
    city_pops = {}
@@ -385,24 +428,38 @@ def collect_data_city(df, population_factor, population, target_data, calc_diff,
    for city in cities:
       city_pops[city] = calc_city_pop(city, df['City'], df['Grade'],
                                       df[population_factor], df[population])
+   
+   # If the parameter specifies that we are to measure the intraurban
+   # difference in air pollutant level as opposed to just the air pollutant
+   # level by itself, then we also need to initialize a dictionary containing
+   # the population-weighted mean concentration of the pollutant in each unique
+   # city.
    if calc_diff:
       pwms = {}
       for city in cities:
          pwms[city] = calc_city_pwm(city, df['City'], df[target_data], df[population])
       diff = "pwms[df['City'][i]]"
    
+   # Sort the list of cities by their population size so we may partition them
+   # into small, medium, or large class.
    sorted_populations = list(city_pops.values())
    sorted_populations.sort()
    small_cities, medium_cities, large_cities = sort_city_pops(city_pops, sorted_populations)
 
+   # Each list contains data for each HOLC grade in cities of some size.
    small_city_data  = [[], [], [], []]
    medium_city_data = [[], [], [], []]
    large_city_data  = [[], [], [], []]
 
+   # If the parameter specifies that we are to measure the intraurban
+   # difference in air pollutant level as a percentage, we must remember to
+   # use this marker to convert that number to a percent after sorting.
    per = "1"
    if calc_per:
       per = "pwms[df['City'][i]]"
 
+   # Collect data for each city. Adjust appropriately, if the above arguments
+   # indicate to do so.
    for i in df.index:
       if df['City'][i] != 'NA':
          datapoint = (round(df[population_factor][i] * df[population][i]) *
@@ -419,6 +476,9 @@ def collect_data_city(df, population_factor, population, target_data, calc_diff,
       medium_city_data = adjust_percentages(medium_city_data)
       large_city_data = adjust_percentages(large_city_data)
 
+   # Population-weighted mean concentration of air pollution, represented
+   # either by themselves, as intraurban differences, or as a percentage of
+   # their intraurban difference.
    small_city_data = [np.average(x) for x in small_city_data]
    medium_city_data = [np.average(x) for x in medium_city_data]
    large_city_data = [np.average(x) for x in large_city_data]
