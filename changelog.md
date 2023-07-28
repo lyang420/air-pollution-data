@@ -85,3 +85,8 @@
   what to accomplish in the coming weeks
 - Began the process of editing code indentation and style to make them more
   readable to viewers
+
+### July 28, 2023
+
+- Added additional comments to `utils.py` and `baltimore.py` explaining
+  reasoning behind data collection methodology
