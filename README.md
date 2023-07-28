@@ -69,7 +69,7 @@ See `changelog.md`.
 - [x] Adjust plot visual details (title, axis labels, scale, color, legend)
 - [x] Rename files
 - [x] Modify code to process local (Baltimore) data
-- [ ] Finish adjusting indentation and adding comments in scripts
+- [x] Adjust indentation and add comments in scripts
 - [ ] Write detailed analysis in the form of a Jupyter Notebook file
 
 ## Credits
