@@ -1,3 +1,10 @@
+# `baltimore.py` contains scripts that generate plots of a similar nature to
+# those found in the study, except instead of concentrating on national data,
+# it focuses on local data (Baltimore, MD). Some of these functions are nearly
+# identical to those in `utils.py` (and indeed, some explicitly reference
+# `utils.py`). However, because these computations only focus on one city,
+# they are, collectively, far lighter and faster to run.
+
 from utils import init
 from utils import collect_data_residents
 from utils import collect_data_percentile
@@ -5,17 +12,33 @@ from utils import collect_data_percentile
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Nearly identical to some of the functions from `utils.py`. But a little
-# different. And faster too, since we're only working with Baltimore data now
-# instead of national (10,000 vs over 2,000,000)
-
+# `compute_pwm` computes and returns the population-weighted mean of a given
+# `target_data`, usually an air pollutant concentration, for an HOLC-mapped
+# block in some area.
 def compute_pwm(grade, population_factor, population, target_data):
+   # We care only about HOLC-mapped data, so we filter out the lists based
+   # on the HOLC grade.
    condition = (~np.equal(grade, 'N'))
    population_factor = population_factor[condition]
    population = population[condition]
    target_data = target_data[condition]
    return np.average(target_data, weights = round(population_factor * population))
 
+# `create_figure_1` collects data and generates six box-and-whisker plots
+# displaying the following:
+#
+# -- Unadjusted population-weighted NO₂ concentration, measured in ppb, among
+#    HOLC-graded areas, by HOLC grade and ethnicity in Baltimore
+# -- Intraurban difference NO₂ concentration, measured in ppb, among
+#    HOLC-graded areas, by HOLC grade and ethnicity in Baltimore
+# -- The difference between population-weighted NO₂ concentration in Baltimore
+#    blocks from the national average
+# -- Unadjusted population-weighted PM₂.₅ concentration, measured in μg/m³,
+#    among HOLC-graded areas, by HOLC grade and ethnicity in Baltimore
+# -- Intraurban difference PM₂.₅ concentration, measured in μg/m³, among
+#    HOLC-graded areas, by HOLC grade and ethnicity in Baltimore
+# -- The difference between population-weighted PM₂.₅ concentration in
+#    Baltimore blocks from the national average
 def create_figure_1(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm,
                     national_pm25_pwm):
 
@@ -104,6 +127,19 @@ def create_figure_1(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm,
                   'Population-Weighted PM₂.₅ (μg/m³)', -1, 1.2, colors,
                   'figure-b1-6.png')
 
+# `create_figure_2` collects data and generates four plots displaying the
+# following:
+#
+# -- Intraurban difference NO₂ concentration, measured in ppb, among
+#    HOLC-graded areas, by both HOLC grade _and_ ethnicity in Baltimore
+# -- The difference in NO₂ concentration, measured in ppb, among HOLC-graded
+#    areas, by both HOLC grade _and_ ethnicity, between Baltimore and the
+#    national mean numbers
+# -- Intraurban difference PM₂.₅ concentration, measured in μg/m³, among
+#    HOLC-graded areas, by both HOLC grade _and_ ethnicity in Baltimore
+# -- The difference in PM₂.₅ concentration, measured in μg/m³, among
+#    HOLC-graded areas, by both HOLC grade _and_ ethnicity, between Baltimore
+#    and the national mean numbers
 def create_figure_2(local_data, local_no2_pwm, local_pm25_pwm,
                     national_no2_pwm, national_pm25_pwm):
 
@@ -169,6 +205,14 @@ def create_figure_2(local_data, local_no2_pwm, local_pm25_pwm,
                   'National PM₂.₅ Difference (μg/m³)', -0.8, 0.8,
                   'figure-b2-4.png')
 
+# `create_figure_3` collects data and generates three plots displaying the
+# following:
+#
+# -- The total number of people living in Baltimore, separated by HOLC grade
+#    and their respective ethnicities
+# -- The proportion of each population living in each HOLC grade of some
+#    ethnicity
+# -- Comparison of demographics between Baltimore and the national average.
 def create_figure_3(all_data, local_data):
 
    def generate_fig_3_1(weights, width, title, x_label, y_label, y_tick_loc,
@@ -238,6 +282,13 @@ def create_figure_3(all_data, local_data):
                     'Demographic Percentage Difference Distribution', -40, 40,
                     'figure-b3-3.png')
    
+# `create_figure_4` collects data and generates two plots displaying the
+# following:
+#
+# -- The cumulative distribution of NO₂ concentration, measured in ppb, in
+#    Baltimore.
+# -- The cumulative distribution of PM₂.₅ concentration, measured in μg/m³, in
+#    Baltimore.
 def create_figure_4(local_data):
 
    def generate_fig_4(data, percentiles, title, x_label, y_label, x_tick_loc,
@@ -277,6 +328,8 @@ national_df = init()
 # Baltimore statistics
 baltimore_df = national_df[national_df['City'] == 'Baltimore, MD']
 
+# Population-weighted mean concentration of NO₂ and PM₂.₅ levels, for both
+# Baltimore and nationwide.
 local_no2_pwm = compute_pwm(baltimore_df['Grade'], baltimore_df['PHOLC'],
                             baltimore_df['Total'], baltimore_df['NO2'])
 local_pm25_pwm = compute_pwm(baltimore_df['Grade'], baltimore_df['PHOLC'],
