@@ -1,8 +1,17 @@
+# `figure-s4.py` generates the two plots from Figure S4, shown in the study's
+# supporting information file. These two plots display the cumulative
+# percentile distribution of NO₂ levels (measured in ppb) and PM₂.₅ levels
+# (measured in μg/m³) by HOLC grade.
+
 from utils import init
 from utils import collect_data_percentile
 
 import matplotlib.pyplot as plt
 
+# `generate_plot` abstracts the plot generation process and allows users to
+# customize the input data, as well as cosmetic details of each plot, such as
+# the labels to use, the title to name the plot, as well as the colors and
+# file name.
 def generate_plot(data, percentiles, title, x_label, y_label, y_min, y_max,
                   x_tick_loc, x_ticks, y_ticks, file_name):
    fig, ax = plt.subplots()
@@ -23,13 +32,16 @@ def generate_plot(data, percentiles, title, x_label, y_label, y_min, y_max,
    ax.figure.set_figwidth(5)
    plt.savefig(file_name, dpi = 300)
 
+# Initialize DataFrame
 df = init()
 
+# Collect data.
 no2_data = collect_data_percentile(df, 'PHOLC', 'Total', 'NO2')
 pm25_data = collect_data_percentile(df, 'PHOLC', 'Total', 'PM25')
 percentiles = range(0, 100)
 ticks = (0.01, 10, 20, 30, 40, 50, 60, 70, 80, 90, 99.99)
 
+# Generate plots.
 generate_plot(no2_data, percentiles, 'Overall Cumulative NO₂ Distribution',
               'Population Percentile', 'NO₂ (ppb)', 0, 35, ticks, ticks,
               (0, 10, 20, 30), 'figure-s4-a.png')
