@@ -27,12 +27,15 @@ Georgetown University.
 
 ### Repository Organization
 
-Currently, the repository has six folders. Five of them (`figure-1`,
+Currently, the repository has seven folders. Five of them (`figure-1`,
 `figure-2`, `figure-s3`, `figure-s4` and `figure-s5`) stores plots that
 correspond to those seen in the study, as well as the Python scripts written to
 generate them. The sixth folder (`baltimore-figures`) contains plots of the
 same style as those seen in the study, but which display data relevant to
-Baltimore City.
+Baltimore City. The seventh folder (`notes`) contains a map of the HOLC grades
+prescribed in the 1930s in Baltimore City, and several text files explaining
+what an HOLC grade is, and how it was determined, as well as more in-depth
+summaries of the plots in `baltimore-figures`.
 
 Outside of the folders, there is a `README`, as well as a changelog tracking
 progress made in the development of this repository. There is also a file
@@ -66,11 +69,12 @@ See `changelog.md`.
 ### To Do
 
 - [x] Abstract repetitive functions from individual scripts to `utils.py`
-- [x] Adjust plot visual details (title, axis labels, scale, color, legend)
-- [x] Rename files
+- [x] Adjust plot visual details (titles, axis labels, scales, colors, legends)
+- [x] Standardize file naming convention
 - [x] Modify code to process local (Baltimore) data
-- [x] Adjust indentation and add comments in scripts
-- [ ] Write detailed analysis in the form of a Jupyter Notebook file
+- [x] Adjust indentation in code and write comments
+- [ ] Summarize findings in tex document
+- [ ] Write code analysis in Jupyter Notebook file?
 
 ## Credits
 
