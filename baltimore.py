@@ -229,18 +229,17 @@ def create_figure_3(all_data, local_data):
       ax.legend(loc = "upper right")
       plt.savefig(file_name, dpi = 300)
 
-   def generate_fig_3_2(data, axes, title, x_label, y_label, y_tick_loc, y_ticks, file_name):
+   def generate_fig_3_2(data, axes, x_label, y_label, y_min, y_max, file_name):
       fig, ax = plt.subplots()
       ax.plot(axes, data[0], 'm--', label = 'White')
       ax.plot(axes, data[1], 'k-', label = 'Other')
       ax.plot(axes, data[2], 'm-', label = 'Black')
       ax.plot(axes, data[3], 'b:', label = 'Asian')
       ax.plot(axes, data[4], 'g--', label = 'Hispanic')
-      ax.set_title(title)
       ax.axhline(y = 0, color = 'grey', linestyle = '-', linewidth = 1)
       ax.set_xlabel(x_label)
       ax.set_ylabel(y_label)
-      ax.set_yticks(y_tick_loc, y_ticks)
+      ax.set_ylim(y_min, y_max)
       ax.legend(loc = 'upper right')
       plt.savefig(file_name, dpi = 300)
 
@@ -279,11 +278,8 @@ def create_figure_3(all_data, local_data):
    national_per = np.array(national_percentage_data)
    diff_per = list(np.subtract(local_percentage_data, national_per))
 
-   generate_fig_3_2(diff_per, ['A', 'B', 'C', 'D'],
-                    'Differences in Baltimore and Nationwide Demographics',
-                    'HOLC Grade', 'Differences in Population (Percentages)',
-                    (-40, -30, -20, -10, 0, 10, 20, 30, 40),
-                    ('-40%', '-30%', '-20%', '-10%', '0%', '10%', '20%', '30%', '40%'),
+   generate_fig_3_2(diff_per, ['A', 'B', 'C', 'D'], 'HOLC Grade',
+                    'Demographic Percentage Difference Distribution', -40, 40,
                     'figure-b3-3.png')
    
 # `create_figure_4` collects data and generates two plots displaying the
