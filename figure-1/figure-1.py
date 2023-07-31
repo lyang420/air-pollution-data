@@ -37,7 +37,7 @@ def generate_plot(data, labels, title, x_label, y_label, min_y, max_y, y_ticks,
    for patch, color in zip(plot['boxes'], colors): patch.set_facecolor(color)
    plt.savefig(file_name, dpi = 300)
 
-# Initialize DataFrame.
+# Initialize DataFrame
 df = init()
 
 # Collect unadjusted and adjusted levels of NO₂ and PM₂.₅ concentrations.
