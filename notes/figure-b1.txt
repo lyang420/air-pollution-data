@@ -1,0 +1,52 @@
+This text file covers the six subplots under Figure 1 for Baltimore data. That
+is, `figure-b1-1.png` through `figure-b1-6.png`. Raw data pulled from the same
+source as in the study, focusing largely on entries with `Baltimore, MD` in the
+`City` field.
+
+figure-b1-1.png
+   -
+   This plot displays the population-weighted distribution of NO₂ levels within
+   HOLC-mapped areas at the census block level of Baltimore, MD, in the year
+   2010. NO₂ levels are measured in ppb. Bars represent the 25th and 75th
+   percentiles. Horizontal lines represent medians, and the dot in the middle
+   of each bar represent means. The dotted line across the entire plot is the
+   overall mean.
+
+   As can be seen from the x-axis, there are two clusters of bars.
+   
+   The first displays air pollution levels by HOLC grade; as HOLC grade gets
+   worse, so does the air quality.
+
+   The second displays air pollution levels by race/ethnicity; NO₂ levels
+   are lower among White populations than in Black, Asian, or Hispanic
+   populations.
+
+   Compared to the nationwide statistics seen in Figure 1(a) from the study,
+   HOLC grade seems to have a far larger effect on air quality than ethnicity.
+   In particular, the difference in air pollution levels between "A"/"B" areas
+   and "C"/"D" areas are more extreme. There is also an observable trend in the
+   ethnicity column, though not as severe.
+
+figure-b1-2.png
+   -
+   This plot displays the population-weighted distribution of NO₂ levels within
+   HOLC-mapped areas at the census block level of Baltimore, MD, in the year
+   2010, as intraurban differences.
+
+   That is, each datapoint consists of the NO₂ concentration at a census block
+   level, minus the population-weighted mean NO₂ level for Baltimore, MD.
+
+figure-b1-3.png
+   -
+   This plot displays the population-weighted distribution of NO₂ levels within
+   HOLC-mapped areas at the census block level of Baltimore, MD, and how much
+   they differ from nationwide data.
+
+   That is, each datapoint consists of the NO₂ concentration at a census block
+   level, minus the population-weighted mean NO₂ level for all entries in the
+   raw data file (nationwide).
+
+figure-b1-4.png, figure-b1-5.png, and figure-b1-6.png follow the same format
+as the above three plots, but shows PM₂.₅ levels, measured in μg/m³, instead.
+It is important to note that PM₂.₅ levels are less pronounced, with the "C"
+HOLC grade receiving the worse overall distribution of air pollution levels.

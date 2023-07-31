@@ -1,0 +1,46 @@
+This text file covers the three subplots under Figure 3 for Baltimore data.
+That is, `figure-b3-1.png` through `figure-b3-3.png`. Raw data pulled from the
+same source as in the study, focusing largely on entries with `Baltimore, MD`
+in the `City` field.
+
+I consider this the most significant of all the plots containing Baltimore
+data, as the demographics in this region of the country differs somewhat from
+the national numbers, and thus provides and important bridge between the trends
+of HOLC grading and race/ethnicity present in Figures 1, 2, and 4.
+
+figure-b3-1.png
+   -
+   This plot takes all residents living in Baltimore, MD, and groups them based
+   on the HOLC grade of the block they are living in in the form of a bar
+   chart. Each bar also divides the population living there by race/ethnicity.
+
+   The overwhelming majority of people in Baltimore live in blocks designated
+   as "B" or "C" (not great, not terrible). A few live in "D" (not great
+   places to be), and an outstanding minority live in "A." This could be
+   explained by the fact that, since Baltimore is a heavily urban area, there
+   simply aren't many blocks graded "A" in the first place.
+
+   When you compare this with Figure S3(a) from the study, it is clear that
+   there is a huge difference in demographics between Baltimore and nationwide,
+   as there are more people reporting under "Black" for race/ethnicity.
+
+figure-b3-2.png
+   -
+   This plot once again displays four bars, one for each HOLC grade, except
+   that each bar is subsequently divided to show the proportion of residents
+   living in each grade that are of some ethnicity. Similar to the nationwide
+   results, as HOLC grade worsens, the proportion of people of color increases.
+   As was seen in figure-b3-1.png already, there is a significantly higher
+   number of Black residents in Baltimore compared to nationwide statistics.
+
+figure-b3-3.png
+   -
+   This plot displays the difference, in percentages of residents of each
+   ethnicity and HOLC grade in Baltimore versus nationwide averages. For
+   example, the line labeled "Black" at HOLC grade A has a value of about
+   32--33%. This indicates that there are 32-33% more Black people living in
+   blocks graded "A" in Baltimore compared to nationwide.
+
+   Overall takeaways: Significantly more Black residents living in Baltimore
+   compared to nationwide, and somewhat less residents of other ethnicities
+   compared to nationwide, with the lowest concentration being White residents.

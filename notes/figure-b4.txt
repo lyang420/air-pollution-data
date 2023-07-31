@@ -1,0 +1,26 @@
+This text file covers the two subplots under Figure 4 for Baltimore data. That
+is, `figure-b4-1.png` and `figure-b4-2.png`. Raw data pulled from the same
+source as in the study, focusing largely on entries with `Baltimore, MD` in the
+`City` field.
+
+figure-b4-1.png
+   -
+   This plot displays the overall cumulative NO₂ distribution (measured in ppb)
+   for all HOLC mapped areas in Baltimore, separated by HOLC grade.
+
+   As can be expected, the exposure distribution for areas with worse HOLC
+   grades are far worse than the "desirable" grades, with "D" rising head and
+   shoulders above the rest (but we already saw this in Figure 1).
+
+   `CUA` is just a collection of all blocks regardless of whether they are "A",
+   "B", "C", or "D", so it makes sense that it falls squarely in the middle,
+   given that it is a composite of all the data.
+
+figure-b4-2.png
+   -
+   This plot follows the same organization as figure-b4-1.png, except that it
+   displays the cumulative PM₂.₅ distribution, measured in μg/m³. There is
+   less of a gap between grades than the one seen in the NO₂ plot, and, once
+   again, according to the trend first seen in Figure 1, areas marked with a
+   "C" grade is just barely worse in terms of air quality than "D" or the other
+   grades.
