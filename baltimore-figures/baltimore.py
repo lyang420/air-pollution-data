@@ -211,7 +211,7 @@ def create_figure_2(local_data, local_no2_pwm, local_pm25_pwm,
 # -- The total number of people living in Baltimore, separated by HOLC grade
 #    and their respective ethnicities
 # -- The proportion of each population living in each HOLC grade that is of
-#    some ethnicity
+#    a specified ethnicity
 # -- Comparison of demographics between Baltimore and the national population
 def create_figure_3(all_data, local_data):
 
