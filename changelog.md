@@ -90,3 +90,13 @@
 
 - Added additional comments to `utils.py` and `baltimore.py` explaining
   reasoning behind data collection methodology
+
+### July 31, 2023
+
+- Made final edits to indentation, variable names, and code comments in scripts
+- Initialized `notes` folder to store auxiliary information, including a visual
+  map of the HOLC grades of Baltimore City, pulled from the same source of data
+  the original study referenced
+- Constructed a more in-depth explanation of each of the plots in
+  `baltimore-figures` in the form of `.txt` files that will come in handy when
+  summarizing findings in a ` .tex` document later.
