@@ -8,8 +8,6 @@
 # Adjusted plots show the distributions of air pollutant levels in each block,
 # minus the population-weighted mean level of that pollutant of the city that
 # block belongs in.
-#
-# Running this script took about 20 minutes on my machine.
 
 from utils import init
 from utils import collect_data
@@ -42,7 +40,7 @@ def generate_plot(data, labels, title, x_label, y_label, min_y, max_y, y_ticks,
 # Initialize DataFrame.
 df = init()
 
-# Collect unadjusted and adjusted numbers for NO₂ and PM₂.₅ concentration.
+# Collect unadjusted and adjusted levels of NO₂ and PM₂.₅ concentrations.
 no2_unadjusted  = collect_data(df, 'PHOLC', 'NO2',  False)
 no2_adjusted    = collect_data(df, 'PHOLC', 'NO2',  True)
 pm25_unadjusted = collect_data(df, 'PHOLC', 'PM25', False)
