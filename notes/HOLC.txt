@@ -1,0 +1,26 @@
+Per README.HOLC.all.txt at raw data link: Raw air pollution and demographics
+data compiled for 148 census urbanized areas with 202 HOLC mapped cities for
+the year 2010 at a census block level [n = 1952135 blocks]. Dataset compiled
+as described in the "supporting information" section. Shapefiles developed
+using HOLC redlining maps provided by the Mapping Inequality Project.
+
+`baltimore-HOLC.jpg` shows HOLC mappings from the above sources. Per the
+source at https://dsl.richmond.edu/panorama/redlining/#loc=11/39.324/-76.775&city=baltimore-md:
+
+* 08% A "Best"
+* 46% B "Still Desirable"
+* 31% C "Definitely Declining" -- "No immediate danger" reference
+* 15% D "Hazardous"            -- Specifically references black population
+
+"Beginning in the 1930s, the federally sponsored Home Owners' Loan Corporation
+(HOLC) drew maps characterizing neighborhood security for emergency home
+lending for several hundred U.S. cities... many neighborhoods received the
+worst grade due to the presence of Black and immigrant communities and/or
+known environmental pollution sources... isolated communities of color,
+restricting their ability to build wealth through home ownership, and informed
+later local government land use decisions that placed hazardous industries in
+and near D neighborhoods..." (Lane, Morello-Frosch, Marshall, & Apte, 2022).
+
+1. Worse air quality in lower HOLC grades ->
+2. Ethnicity contributes to classification of lower HOLC grades ->
+3. More likely to be worse air quality in areas with minorities
