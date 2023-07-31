@@ -1,8 +1,18 @@
+# `figure-s5.py` generates the six plots from Figure S5, shown in the study's
+# supporting information file. These six plots display NO₂ levels (measured in
+# ppb) and PM₂.₅ levels (measured in μg/m³) by city size, first nominally,
+# then through their intraurban differences, and finally as their intraurban
+# differences again, expressed as percentage values.
+
 from utils import init
 from utils import collect_data_city
 
 import matplotlib.pyplot as plt
 
+# `generate_plot` abstracts the plot generation process and allows users to
+# customize the input data, as well as cosmetic details of each plot, such as
+# the labels to use, the title to name the plot, as well as the colors and
+# file name.
 def generate_plot(axis, data, title, x_label, y_label, y_min, y_max,
                   y_tick_loc, y_ticks, figure_name):
    fig, ax = plt.subplots()
@@ -20,8 +30,10 @@ def generate_plot(axis, data, title, x_label, y_label, y_min, y_max,
    ax.grid(color = "gainsboro")
    plt.savefig(figure_name, dpi = 300)
 
+# Initialize DataFrame
 df = init()
 
+# Collect data.
 no2_unadjusted_data          = collect_data_city(df, 'PHOLC', 'Total', 'NO2',  False, False)
 no2_intraurban_raw_data      = collect_data_city(df, 'PHOLC', 'Total', 'NO2',  True,  False)
 no2_intraurban_percent_data  = collect_data_city(df, 'PHOLC', 'Total', 'NO2',  True,  True)
@@ -29,10 +41,12 @@ pm25_unadjusted_data         = collect_data_city(df, 'PHOLC', 'Total', 'PM25', F
 pm25_intraurban_raw_data     = collect_data_city(df, 'PHOLC', 'Total', 'PM25', True,  False)
 pm25_intraurban_percent_data = collect_data_city(df, 'PHOLC', 'Total', 'PM25', True,  True)
 
+# Initialize cosmetic details
 axis = ['A', 'B', 'C', 'D']
 title = 'Comparison of Population-Weighted Mean Pollution Levels by City Size'
 x_label = 'HOLC Grade'
 
+# Generate the six plots.
 generate_plot(axis, no2_unadjusted_data, title, x_label,
               'Population-Weighted NO₂ (ppb)', -1, 22, (0, 5, 10, 15, 20),
               (0, 5, 10, 15, 20), 'figure-s5-a.png')
