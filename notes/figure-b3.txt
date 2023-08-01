@@ -44,3 +44,50 @@ figure-b3-3.png
    Overall takeaways: Significantly more Black residents living in Baltimore
    compared to nationwide, and somewhat less residents of other ethnicities
    compared to nationwide, with the lowest concentration being White residents.
+
+Statistics
+   -
+   Format is as follows: [White    A B C D
+                          Other    A B C D
+                          Black    A B C D
+                          Asian    A B C D
+                          Hispanic A B C D]
+
+   figure-b3-1.png (Residents Per 10,000)
+      -
+      White
+      [2.1385, 9.2808, 7.4245, 4.9306]
+      Other
+      [0.096, 0.5481, 0.5368, 0.3013]
+      Black
+      [2.0589, 13.8207, 12.5757, 6.9317]
+      Asian
+      [0.1973, 0.5697, 0.4904, 0.4671]
+      Hispanic
+      [0.1164, 0.6268, 1.1209, 0.8319]
+
+   figure-b3-2.png (Residents Percentage)
+      -
+      White
+      [46.41748605413384, 37.3531459665702, 33.52176013508937, 36.624426188106305]
+      Other
+      [2.0837403138633848, 2.2059800129597806, 2.4236623126831405, 2.23805208503558]
+      Black
+      [44.68971804388878, 55.62522890916482, 56.7795270968878, 51.488568330040266]
+      Asian
+      [4.282520457554644, 2.2929151858843038, 2.2141654212738673, 3.469612110587851]
+      Hispanic
+      [2.5265351305593544, 2.522729925420891, 5.06088503406582, 6.179341286230001]
+
+   figure-b3-3.png (Residents vs National)
+      -
+      White
+      [-26.54094156, -17.08235381,  -7.04003402,   5.42955571]
+      Other
+      [-0.33541902, -0.59857341, -0.65137866, -0.45144104]
+      Black
+      [32.82475147, 35.72421217, 34.30885867, 21.73574981]
+      Asian
+      [-0.69990299, -3.90770789, -5.73925336, -3.14500416]
+      Hispanic
+      [ -5.2484879 , -14.13557707, -20.87819264, -23.56886031]

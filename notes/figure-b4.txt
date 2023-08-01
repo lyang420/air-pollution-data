@@ -24,3 +24,33 @@ figure-b4-2.png
    again, according to the trend first seen in Figure 1, areas marked with a
    "C" grade is just barely worse in terms of air quality than "D" or the other
    grades.
+
+Statistics
+   -
+   Format is as follows: [0.01, 50, 99.99]
+
+   figure-b4-1.png
+      -
+      A
+      [ 6.10882    10.6846     14.69883374]
+      B
+      [ 5.33039 11.0838  15.8254 ]
+      C
+      [ 8.56338 13.7808  20.9169 ]
+      D
+      [ 8.80298 17.7597  23.29   ]
+      CUA
+      [ 5.33039 12.7003  22.9185 ]
+
+   figure-b4-2.png
+      -
+      A
+      [ 8.96553 10.5801  11.6252 ]
+      B
+      [ 8.83469 10.7583  12.039  ]
+      C
+      [ 9.34542 11.1952  12.627  ]
+      D
+      [ 9.79965 11.1856  12.5004 ]
+      CUA
+      [ 8.83469 10.9908  12.618  ]
