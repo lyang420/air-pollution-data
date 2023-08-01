@@ -340,7 +340,7 @@ def collect_data_percentile(df, population_factor, population, target_data):
    percentile_C = []
    percentile_D = []
    cumulative = []
-   percentiles = range (0, 100)
+   percentiles = range(0, 100)
 
    # This is also similar to `collect_data`, except that it only sorts air
    # pollutant statistics by HOLC grade, and subsequently transforms them into
