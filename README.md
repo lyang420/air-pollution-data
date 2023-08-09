@@ -73,8 +73,6 @@ See `changelog.md`.
 - [x] Standardize file naming convention
 - [x] Modify code to process local (Baltimore) data
 - [x] Adjust indentation in code and write comments
-- [ ] Summarize findings in tex document
-- [ ] Write code analysis in Jupyter Notebook file?
 
 ## Credits
 
