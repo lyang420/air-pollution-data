@@ -99,4 +99,9 @@
   the original study referenced
 - Constructed a more in-depth explanation of each of the plots in
   `baltimore-figures` in the form of `.txt` files that will come in handy when
-  summarizing findings in a ` .tex` document later.
+  summarizing findings in a ` .tex` document later
+
+### August 9, 2023
+
+- Regenerated Baltimore figures in higher resolution
+- Updated `README` to reflect this term's progress
