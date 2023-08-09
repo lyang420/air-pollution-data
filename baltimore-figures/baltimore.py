@@ -88,7 +88,7 @@ def create_figure_1(local_data, local_no2_pwm, local_pm25_pwm, national_no2_pwm,
       ax.legend()
       for median in plot['medians']: median.set_color('black')
       for patch, color in zip(plot['boxes'], colors): patch.set_facecolor(color)
-      plt.savefig(file_name, dpi = 300)
+      plt.savefig(file_name, dpi = 1200)
 
    local_no2_data_unadjusted  = collect_data(local_data, 'PHOLC', 'NO2',  0)
    local_no2_data_adjusted    = collect_data(local_data, 'PHOLC', 'NO2',  local_no2_pwm)
@@ -184,7 +184,7 @@ def create_figure_2(local_data, local_no2_pwm, local_pm25_pwm,
       ax.set_ylabel(y_label)
       ax.set_ylim(min_y, max_y)
       ax.legend()
-      plt.savefig(file_name, dpi = 300)
+      plt.savefig(file_name, dpi = 1200)
 
    local_no2_diff     = collect_data(local_data, 'PHOLC', 'NO2',  local_no2_pwm)
    national_no2_diff  = collect_data(local_data, 'PHOLC', 'NO2',  national_no2_pwm)
@@ -227,7 +227,7 @@ def create_figure_3(all_data, local_data):
       ax.set_ylabel(y_label)
       ax.set_yticks(y_tick_loc, y_ticks)
       ax.legend(loc = "upper right")
-      plt.savefig(file_name, dpi = 300)
+      plt.savefig(file_name, dpi = 1200)
 
    def generate_fig_3_2(data, axes, title, x_label, y_label, y_tick_loc, y_ticks, file_name):
       fig, ax = plt.subplots()
@@ -310,7 +310,7 @@ def create_figure_4(local_data):
       ax.legend()
       ax.set_axisbelow(True)
       ax.grid(color = "gainsboro")
-      plt.savefig(file_name, dpi = 300)
+      plt.savefig(file_name, dpi = 1200)
 
    baltimore_no2_cum  = collect_data_percentile(local_data, 'PHOLC', 'Total', 'NO2')
    baltimore_pm25_cum = collect_data_percentile(local_data, 'PHOLC', 'Total', 'PM25')
